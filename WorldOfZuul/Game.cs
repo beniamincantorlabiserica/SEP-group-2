@@ -13,21 +13,21 @@
         private void CreateRooms()
         {
   
-            Room? outside = new("Outside", "You are standing outside the main entrance of the university. To the east is a large building, to the south is a computing lab, and to the west is the campus pub.");
+            Room? outside = new("Outside", "You are standing outside the main entrance of the university. To the right is a large building, to the down is a computing lab, and to the left is the campus pub.");
             Room? theatre = new("Theatre", "You find yourself inside a large lecture theatre. Rows of seats ascend up to the back, and there's a podium at the front. It's quite dark and quiet.");
             Room? pub = new("Pub", "You've entered the campus pub. It's a cozy place, with a few students chatting over drinks. There's a bar near you and some pool tables at the far end.");
-            Room? lab = new("Lab", "You're in a computing lab. Desks with computers line the walls, and there's an office to the east. The hum of machines fills the room.");
+            Room? lab = new("Lab", "You're in a computing lab. Desks with computers line the walls, and there's an office to the right. The hum of machines fills the room.");
             Room? office = new("Office", "You've entered what seems to be an administration office. There's a large desk with a computer on it, and some bookshelves lining one wall.");
 
-            outside.SetExits(null, theatre, lab, pub); // North, East, South, West
+            outside.SetExits(null, theatre, lab, pub); // up, right, down, left
 
-            theatre.SetExit("west", outside);
+            theatre.SetExit("left", outside);
 
-            pub.SetExit("east", outside);
+            pub.SetExit("right", outside);
 
             lab.SetExits(outside, office, null, null);
 
-            office.SetExit("west", lab);
+            office.SetExit("left", lab);
 
             currentRoom = outside;
         }
@@ -73,10 +73,10 @@
                             currentRoom = previousRoom;
                         break;
 
-                    case "north":
-                    case "south":
-                    case "east":
-                    case "west":
+                    case "up":
+                    case "down":
+                    case "right":
+                    case "left":
                         Move(command.Name);
                         break;
 
@@ -124,7 +124,7 @@
             Console.WriteLine("You are lost. You are alone. You wander");
             Console.WriteLine("around the university.");
             Console.WriteLine();
-            Console.WriteLine("Navigate by typing 'north', 'south', 'east', or 'west'.");
+            Console.WriteLine("Navigate by typing 'up', 'down', 'right', or 'left'.");
             Console.WriteLine("Type 'look' for more details.");
             Console.WriteLine("Type 'back' to go to the previous room.");
             Console.WriteLine("Type 'help' to print this message again.");
