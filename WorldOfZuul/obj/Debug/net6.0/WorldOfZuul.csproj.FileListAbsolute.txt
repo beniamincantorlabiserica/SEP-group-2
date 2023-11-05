@@ -27,3 +27,17 @@ C:/Users/maxdk/source/repos/WorldOfZuul/WorldOfZuul/obj/Debug/net6.0/ref/WorldOf
 /Users/beniamin/Desktop/SDU/SEP/WorldOfZuul/WorldOfZuul/obj/Debug/net6.0/WorldOfZuul.pdb
 /Users/beniamin/Desktop/SDU/SEP/WorldOfZuul/WorldOfZuul/obj/Debug/net6.0/WorldOfZuul.genruntimeconfig.cache
 /Users/beniamin/Desktop/SDU/SEP/WorldOfZuul/WorldOfZuul/obj/Debug/net6.0/ref/WorldOfZuul.dll
+E:\SemProject\SEP-group-2\WorldOfZuul\bin\Debug\net6.0\WorldOfZuul.exe
+E:\SemProject\SEP-group-2\WorldOfZuul\bin\Debug\net6.0\WorldOfZuul.deps.json
+E:\SemProject\SEP-group-2\WorldOfZuul\bin\Debug\net6.0\WorldOfZuul.runtimeconfig.json
+E:\SemProject\SEP-group-2\WorldOfZuul\bin\Debug\net6.0\WorldOfZuul.dll
+E:\SemProject\SEP-group-2\WorldOfZuul\bin\Debug\net6.0\WorldOfZuul.pdb
+E:\SemProject\SEP-group-2\WorldOfZuul\obj\Debug\net6.0\WorldOfZuul.GeneratedMSBuildEditorConfig.editorconfig
+E:\SemProject\SEP-group-2\WorldOfZuul\obj\Debug\net6.0\WorldOfZuul.AssemblyInfoInputs.cache
+E:\SemProject\SEP-group-2\WorldOfZuul\obj\Debug\net6.0\WorldOfZuul.AssemblyInfo.cs
+E:\SemProject\SEP-group-2\WorldOfZuul\obj\Debug\net6.0\WorldOfZuul.csproj.CoreCompileInputs.cache
+E:\SemProject\SEP-group-2\WorldOfZuul\obj\Debug\net6.0\WorldOfZuul.dll
+E:\SemProject\SEP-group-2\WorldOfZuul\obj\Debug\net6.0\refint\WorldOfZuul.dll
+E:\SemProject\SEP-group-2\WorldOfZuul\obj\Debug\net6.0\WorldOfZuul.pdb
+E:\SemProject\SEP-group-2\WorldOfZuul\obj\Debug\net6.0\WorldOfZuul.genruntimeconfig.cache
+E:\SemProject\SEP-group-2\WorldOfZuul\obj\Debug\net6.0\ref\WorldOfZuul.dll
