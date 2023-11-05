@@ -1,8 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "bZJfUZ7u6Wpqdq3tj1VhY7SHJhXnwQnX8/5q6M8cPswcuJPprf2qsFU0reiTWye0KbZmTpiisdWw3aqYLGPs5Q==",
+  "dgSpecHash": "uUSWcKqdlAp2wZZy9NYviYnG9txITDixiPozEttSB1ndCq79ny9P4QNJfPG9/7zpMMKoMKP5WKR83JhQbjqAuA==",
   "success": true,
-  "projectFilePath": "/Users/beniamin/Desktop/SDU/SEP/WorldOfZuul/WorldOfZuul/WorldOfZuul.csproj",
-  "expectedPackageFiles": [],
+  "projectFilePath": "E:\\SemProject\\SEP-group-2\\WorldOfZuul\\WorldOfZuul.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\chiri\\.nuget\\packages\\microsoft.netcore.app.ref\\6.0.21\\microsoft.netcore.app.ref.6.0.21.nupkg.sha512",
+    "C:\\Users\\chiri\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\6.0.21\\microsoft.windowsdesktop.app.ref.6.0.21.nupkg.sha512",
+    "C:\\Users\\chiri\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\6.0.21\\microsoft.aspnetcore.app.ref.6.0.21.nupkg.sha512",
+    "C:\\Users\\chiri\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\6.0.21\\microsoft.netcore.app.host.win-x64.6.0.21.nupkg.sha512"
+  ],
   "logs": []
 }

@@ -8,25 +8,24 @@
     "net6.0": []
   },
   "packageFolders": {
-    "/Users/beniamin/.nuget/packages/": {}
+    "C:\\Users\\chiri\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/beniamin/Desktop/SDU/SEP/WorldOfZuul/WorldOfZuul/WorldOfZuul.csproj",
+      "projectUniqueName": "E:\\SemProject\\SEP-group-2\\WorldOfZuul\\WorldOfZuul.csproj",
       "projectName": "WorldOfZuul",
-      "projectPath": "/Users/beniamin/Desktop/SDU/SEP/WorldOfZuul/WorldOfZuul/WorldOfZuul.csproj",
-      "packagesPath": "/Users/beniamin/.nuget/packages/",
-      "outputPath": "/Users/beniamin/Desktop/SDU/SEP/WorldOfZuul/WorldOfZuul/obj/",
+      "projectPath": "E:\\SemProject\\SEP-group-2\\WorldOfZuul\\WorldOfZuul.csproj",
+      "packagesPath": "C:\\Users\\chiri\\.nuget\\packages\\",
+      "outputPath": "E:\\SemProject\\SEP-group-2\\WorldOfZuul\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "/Users/beniamin/.nuget/NuGet/NuGet.Config"
+        "C:\\Users\\chiri\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net6.0"
       ],
       "sources": {
-        "/usr/local/share/dotnet/library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -55,12 +54,30 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
+        "downloadDependencies": [
+          {
+            "name": "Microsoft.AspNetCore.App.Ref",
+            "version": "[6.0.21, 6.0.21]"
+          },
+          {
+            "name": "Microsoft.NETCore.App.Host.win-x64",
+            "version": "[6.0.21, 6.0.21]"
+          },
+          {
+            "name": "Microsoft.NETCore.App.Ref",
+            "version": "[6.0.21, 6.0.21]"
+          },
+          {
+            "name": "Microsoft.WindowsDesktop.App.Ref",
+            "version": "[6.0.21, 6.0.21]"
+          }
+        ],
         "frameworkReferences": {
           "Microsoft.NETCore.App": {
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.400/RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.400\\RuntimeIdentifierGraph.json"
       }
     }
   }
