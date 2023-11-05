@@ -1,4 +1,3 @@
-using System;
 
 namespace TheNaturesLastStand
 {
@@ -7,9 +6,9 @@ namespace TheNaturesLastStand
         private string? name;
         private string? description;
         private bool done;
-        public void theQuest()
+        public Quest()
         {
-            Console.WriteLine("The Quest");
+            
         }
         public bool IsDone()
         {
