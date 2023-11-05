@@ -1,4 +1,6 @@
-﻿namespace WorldOfZuul
+﻿using System;
+
+namespace WorldOfZuul
 {
     public class Game
     {

@@ -1,3 +1,5 @@
+using System;
+
 namespace TheNaturesLastStand
 {
     class Quest
