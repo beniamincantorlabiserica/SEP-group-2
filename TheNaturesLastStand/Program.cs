@@ -1,3 +1,4 @@
+
 ﻿/*
  * World of Zuul is a simple text adventure game that applies the principles of Object-Oriented Programming (OOP) and the SOLID principles:
 
@@ -82,6 +83,11 @@ namespace TheNaturesLastStand
     {
         public static void Main()
         {
+           Seaside newBiome = new Seaside();
+           newBiome.Name("Seaside");
+           newBiome.Description("Seaside blah blah blah, biome story here");
+           newBiome.ScoreNeededToPass(10,0);
+
             Game game = new();
             game.Play();
         }
