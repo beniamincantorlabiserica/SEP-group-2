@@ -4,9 +4,9 @@ namespace TheNaturesLastStand
    public class Location
    {
       //  private Item[] items=new Item[20];
-      private string name { get;}
-      private string description { get;}
-      private List<Quest> quests { set; get;}
+      public string name { get;}
+      public string description { get;}
+      public List<Quest> quests { set; get;}
       private int currentAdvancements;
       private int totalAdvancements;
       public Location(string name, string description, int totalAdvancements, List<Quest> quests)

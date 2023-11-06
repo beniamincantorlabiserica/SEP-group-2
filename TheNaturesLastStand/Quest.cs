@@ -3,9 +3,9 @@ namespace TheNaturesLastStand
 {
     public class Quest
     {
-        private string name;
-        private string description;
-        private bool done {set; get;}
+        public string name;
+        public string description;
+        public bool done {set; get;}
         public Quest(string name, string description)
         {
             this.name = name;
