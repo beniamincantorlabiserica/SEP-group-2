@@ -3,12 +3,14 @@ namespace TheNaturesLastStand
 {
     class Quest
     {
-        private string? name;
-        private string? description;
+        private string name;
+        private string description;
         private bool done;
-        public Quest()
+        public Quest(string name, string description)
         {
-            
+            this.name = name;
+            this.description = description;
+            done = false;
         }
         public bool IsDone()
         {
