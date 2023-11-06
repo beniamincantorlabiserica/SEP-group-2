@@ -83,14 +83,7 @@ namespace TheNaturesLastStand
     {
         public static void Main()
         {
-           Seaside newBiome = new Seaside();
-           newBiome.Name("Seaside");
-           newBiome.Description("Seaside blah blah blah, biome story here");
-           newBiome.ScoreNeededToPass(10,0);
-
             Game game = new();
-            game.Play();
         }
     }
 }
-
