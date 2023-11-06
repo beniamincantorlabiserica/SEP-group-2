@@ -1,6 +1,4 @@
-using System.Reflection.Metadata;
-
-namespace TheNaturesLastStand
+﻿namespace TheNaturesLastStand
 {
     public class Game
     {
@@ -10,9 +8,10 @@ namespace TheNaturesLastStand
 
         public Game()
         {
+
             score = 0;
             CreateSeaside();
-
+          
             init();
             Run();
         }
@@ -56,7 +55,6 @@ namespace TheNaturesLastStand
                 } else {
                     interface.DisplayInvalidCommand(); // funtion to add to GUI
                 }
-
             }
         }
     }
