@@ -1,7 +1,7 @@
 
 namespace TheNaturesLastStand
 {
-   class Location
+   public class Location
    {
       //  private Item[] items=new Item[20];
       private string name { get;}

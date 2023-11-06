@@ -1,7 +1,7 @@
 
 namespace TheNaturesLastStand
 {
-    class Quest
+    public class Quest
     {
         private string name;
         private string description;
