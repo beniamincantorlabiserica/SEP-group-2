@@ -27,7 +27,7 @@
 
             List<Location> locations = new List<Location>{};
             locations.Add(new Location("Test Location", "This is just a test description", 1, allQuests));
-
+            Console.WriteLine("DEBUG: location list lenght" + locations.Count);
             Biome seasideBiome = new Seaside("Seaside", "Seaside biome... the place where the water meets the land...", locations, 400);
             return seasideBiome;
 
@@ -40,10 +40,11 @@
             
             while(playing) {
                 string userInput = gui.ReadCommand(); 
-                if(command.VerifyCommand(gui.ReadCommand())) {
+                if(command.VerifyCommand(userInput)) {
                     switch (userInput)
                     {
                         case "Move": 
+                            gui.DisplayMessage("You are in " + seasideBiome.locations[0].name + " biome.\n");
                             gui.DisplayMessage("You are in " + seasideBiome.locations[0].name + " biome.\n");
                             gui.DisplayMessage("New Quest Available!");
                             gui.DisplayMessage(seasideBiome.locations[0].quests[0].name + "\n" + seasideBiome.locations[0].quests[0].description); 
@@ -60,7 +61,7 @@
                             break;
                     }
                 } else {
-                    gui.DisplayInvalidCommand(); // funtion to add to GUI
+                    gui.DisplayInvalidCommand();
                 }
             }
             gui.GameOver();

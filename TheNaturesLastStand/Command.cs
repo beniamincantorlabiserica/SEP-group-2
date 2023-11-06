@@ -11,9 +11,13 @@ namespace TheNaturesLastStand
         }
 
         public bool VerifyCommand(string input) {
+            Console.WriteLine("DEBUG: verufying command...");
             foreach (var command in commands)
             {
-                if(input.Equals(command)) return true;
+                if(input == command){
+                    Console.WriteLine("DEBUG: command LEGIT");
+                    return true;
+                } 
             }
             return false;
         }

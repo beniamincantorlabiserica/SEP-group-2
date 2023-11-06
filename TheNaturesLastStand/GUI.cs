@@ -6,12 +6,19 @@ namespace TheNaturesLastStand {
 
         public void Start(string name, string description) {
             Console.WriteLine("Hello this is just the first stage of The Nature's Last Stand game.");
-            Console.WriteLine("You start on an island and you are lcoateed on " + name + " " + description);
+            Console.WriteLine("You start on an island and you are lcoateed on " + name + " ywfgwufwfhwhufw4ufhw " + description);
             Console.WriteLine("Your goal is to gain as much points as you can in order to save the planet");
         }
 
         public string ReadCommand() {
-            return Console.ReadLine();
+            
+            string input;
+            // do {
+                Console.WriteLine("DEBUG: reading command...");
+                input = Console.ReadLine();
+            // } while (!string.IsNullOrEmpty(input));
+            Console.WriteLine("DEBUG: current input - " + input);
+            return input;
         }
 
         public void DisplayMessage(string message) {
@@ -28,6 +35,10 @@ namespace TheNaturesLastStand {
 
         public void GameOver() {
             Console.WriteLine("Thank you for playing");
+        }
+
+        public void DisplayInvalidCommand() {
+            Console.WriteLine("Invalid command");
         }
     }
 }
