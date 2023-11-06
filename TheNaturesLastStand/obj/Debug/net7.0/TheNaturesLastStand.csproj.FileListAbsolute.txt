@@ -1,0 +1,4 @@
+/Users/beniamin/Documents/SDU/SEP/SEP-group-2/TheNaturesLastStand/obj/Debug/net7.0/TheNaturesLastStand.GeneratedMSBuildEditorConfig.editorconfig
+/Users/beniamin/Documents/SDU/SEP/SEP-group-2/TheNaturesLastStand/obj/Debug/net7.0/TheNaturesLastStand.AssemblyInfoInputs.cache
+/Users/beniamin/Documents/SDU/SEP/SEP-group-2/TheNaturesLastStand/obj/Debug/net7.0/TheNaturesLastStand.AssemblyInfo.cs
+/Users/beniamin/Documents/SDU/SEP/SEP-group-2/TheNaturesLastStand/obj/Debug/net7.0/TheNaturesLastStand.csproj.CoreCompileInputs.cache

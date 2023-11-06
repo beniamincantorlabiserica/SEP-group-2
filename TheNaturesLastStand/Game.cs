@@ -3,7 +3,8 @@
     public class Game
     {
         private int score;
-        private GUI interface;
+        private GUI gui;
+        private Command command;
         private Biome seasideBiome;
 
         public Game()
@@ -16,7 +17,8 @@
 
         private void init() {
             seasideBiome = CreateSeaside();
-            // interface = new GUI();
+            gui = new GUI();
+            command = new Command();
         }
 
         private Biome CreateSeaside() {
@@ -34,31 +36,34 @@
         private void Run() {
             bool playing = true;
 
-            interface.Start(seasideBiome.name, seasideBiome.description);
+            gui.Start(seasideBiome.name, seasideBiome.description);
             
             while(playing) {
-                string userInput = interface.ReadCommand(); 
-                if(Command.VerifyCommand(interface.ReadCommand())) {
+                string userInput = gui.ReadCommand(); 
+                if(command.VerifyCommand(gui.ReadCommand())) {
                     switch (userInput)
                     {
                         case "Move": 
-                            interface.DisplayMessage("You are in " + seasideBiome.locations[0].name + " biome.\n");
-                            interface.DisplayMessage("New Quest Available!");
-                            interface.DisplayMessage(seasideBiome.locations[0].quests[0].name + "\n" + seasideBiome.locations[0].quests[0].description); 
+                            gui.DisplayMessage("You are in " + seasideBiome.locations[0].name + " biome.\n");
+                            gui.DisplayMessage("New Quest Available!");
+                            gui.DisplayMessage(seasideBiome.locations[0].quests[0].name + "\n" + seasideBiome.locations[0].quests[0].description); 
+                            break;
                         case "Pick":
                             seasideBiome.locations[0].quests[0].done = true;
-                            interface.DisplayMessage("Congrats you finished the quest! +200 points");
+                            gui.DisplayMessage("Congrats you finished the quest! +200 points");
                             score += 200;
+                            break;
                         case "Quit": 
                             playing = false;
                             break;
                         default:
+                            break;
                     }
                 } else {
-                    interface.DisplayInvalidCommand(); // funtion to add to GUI
+                    gui.DisplayInvalidCommand(); // funtion to add to GUI
                 }
             }
-            interface.GameOver();
+            gui.GameOver();
         }
     }
 }

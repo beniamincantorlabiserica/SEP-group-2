@@ -1,20 +1,22 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
 namespace TheNaturesLastStand
 {
     public class Command
     {
-        public string Name { get; }
-        public string? SecondWord { get; } // this might be used for future expansions, such as "take apple".
-
-        public Command(string name, string? secondWord = null)
-        {
-            Name = name;
-            SecondWord = secondWord;
+       private List<string> commands = new List<string>{};
+        public Command() {
+            commands.Add("Help");
+            commands.Add("Move");
+            commands.Add("Quit");
+            commands.Add("Pick");
         }
+
+        public bool VerifyCommand(string input) {
+            foreach (var command in commands)
+            {
+                if(input.Equals(command)) return true;
+            }
+            return false;
+        }
+
     }
 }
