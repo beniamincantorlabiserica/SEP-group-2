@@ -12,6 +12,7 @@ namespace TheNaturesLastStand
             this.description = description;
             done = false;
         }
+
         public bool IsDone()
         {
             return true;
