@@ -3,50 +3,52 @@
     public class Game
     {
         private int score;
-        private Command command;
         private GUI interface;
+        private Biome seasideBiome;
 
         public Game()
         {
-
             score = 0;
-            CreateSeaside();
-          
+            
             init();
             Run();
         }
 
-        private void CreateSeaside() {
-            Quest quest = new Quest("Pick up plastic", "The plastic is not doing good for the nature");
-            Quest[] allQuests = new Quest[];
-            allQuests[0] = quest;
-            Location locationRight = new Location(allQuests, 1, "right");
-            Location[] allLocations = new Location[];
-            allLocations[0] = locationRight;
-            Seaside seasideBiome = new IBiome("Seaside", "Seaside biome... the place where the water meets the land...", allLocations, 400); // add scoreNeededToPass to constructor
+        private void init() {
+            seasideBiome = CreateSeaside();
+            // interface = new GUI();
         }
 
-        private void init() {
-            command = new Command();
-            interface = new Guid();
+        private Biome CreateSeaside() {
+            List<Quest> allQuests = new List<Quest>{};
+            allQuests.Add(new Quest("Pick up plastic", "The plastic is not doing good for the nature"));
+
+            List<Location> locations = new List<Location>{};
+            locations.Add(new Location("Test Location", "This is just a test description", 1, allQuests));
+
+            Biome seasideBiome = new Seaside("Seaside", "Seaside biome... the place where the water meets the land...", locations, 400);
+            return seasideBiome;
+
         }
 
         private void Run() {
             bool playing = true;
 
-            interface.Start();
+            interface.Start(seasideBiome.name, seasideBiome.description);
             
             while(playing) {
-                string userInput = interface.ReadCommand(); // change type of return from Command to string
-                if(Command.VerifyCommand(userInput)) {
+                string userInput = interface.ReadCommand(); 
+                if(Command.VerifyCommand(interface.ReadCommand())) {
                     switch (userInput)
                     {
                         case "Move": 
-                            interface.DisplayMessage("You are in " + seasideBiome.name + " biome.\n");
+                            interface.DisplayMessage("You are in " + seasideBiome.locations[0].name + " biome.\n");
                             interface.DisplayMessage("New Quest Available!");
-                            interface.DisplayMessage(); 
+                            interface.DisplayMessage(seasideBiome.locations[0].quests[0].name + "\n" + seasideBiome.locations[0].quests[0].description); 
                         case "Pick":
-                            
+                            seasideBiome.locations[0].quests[0].done = true;
+                            interface.DisplayMessage("Congrats you finished the quest! +200 points");
+                            score += 200;
                         case "Quit": 
                             playing = false;
                             break;
@@ -56,6 +58,7 @@
                     interface.DisplayInvalidCommand(); // funtion to add to GUI
                 }
             }
+            interface.GameOver();
         }
     }
 }
