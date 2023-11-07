@@ -13,13 +13,13 @@ public abstract class Biome
 
 
 
-    public class Seaside : Biome
+    public class Seaside
     {
 
-        string? name { get; set; }
-        string? description { get; set; }
-        int? requiredScore { get; set; }
-        List<Location> locations {set; get;}
+        public string? name { get; set; }
+        public string? description { get; set; }
+        public int? requiredScore { get; set; }
+        public List<Location> locations {set; get;}
 
         public Seaside(string name, string description, List<Location> locations, int requiredScoreToPass) {
             this.name = name;
@@ -28,7 +28,7 @@ public abstract class Biome
             this.requiredScore = requiredScoreToPass;
         }
 
-        public override bool VerifyScore(int currentScore)
+        public bool VerifyScore(int currentScore)
         {
             return requiredScore <= currentScore; 
         }
