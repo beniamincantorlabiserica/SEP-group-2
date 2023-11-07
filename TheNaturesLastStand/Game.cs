@@ -27,7 +27,6 @@
 
             List<Location> locations = new List<Location>{};
             locations.Add(new Location("Test Location", "This is just a test description", 1, allQuests));
-            Console.WriteLine("DEBUG: location list lenght" + locations.Count);
             Seaside seasideBiome = new Seaside("Seaside", "Seaside biome... the place where the water meets the land...", locations, 400);
             return seasideBiome;
 
