@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "/Users/beniamin/Documents/SDU/SEP/SEP-group-2/TheNaturesLastStand/TheNaturesLastStand.csproj": {}
+    "E:\\TheNaturesLastStand\\SEP-group-2\\TheNaturesLastStand\\TheNaturesLastStand.csproj": {}
   },
   "projects": {
-    "/Users/beniamin/Documents/SDU/SEP/SEP-group-2/TheNaturesLastStand/TheNaturesLastStand.csproj": {
+    "E:\\TheNaturesLastStand\\SEP-group-2\\TheNaturesLastStand\\TheNaturesLastStand.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/beniamin/Documents/SDU/SEP/SEP-group-2/TheNaturesLastStand/TheNaturesLastStand.csproj",
+        "projectUniqueName": "E:\\TheNaturesLastStand\\SEP-group-2\\TheNaturesLastStand\\TheNaturesLastStand.csproj",
         "projectName": "TheNaturesLastStand",
-        "projectPath": "/Users/beniamin/Documents/SDU/SEP/SEP-group-2/TheNaturesLastStand/TheNaturesLastStand.csproj",
-        "packagesPath": "/Users/beniamin/.nuget/packages/",
-        "outputPath": "/Users/beniamin/Documents/SDU/SEP/SEP-group-2/TheNaturesLastStand/obj/",
+        "projectPath": "E:\\TheNaturesLastStand\\SEP-group-2\\TheNaturesLastStand\\TheNaturesLastStand.csproj",
+        "packagesPath": "C:\\Users\\chiri\\.nuget\\packages\\",
+        "outputPath": "E:\\TheNaturesLastStand\\SEP-group-2\\TheNaturesLastStand\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/Users/beniamin/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\chiri\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net7.0"
@@ -53,7 +53,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.403/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.400\\RuntimeIdentifierGraph.json"
         }
       }
     }
