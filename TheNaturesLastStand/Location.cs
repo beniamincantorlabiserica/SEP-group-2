@@ -1,19 +1,21 @@
-
-using System.Data.Common;
-
 namespace TheNaturesLastStand
 {
    public class Location
    {
-      //  private Item item;
-      public string name { get;}
-      private Quest quest;
-      private Dictionary<string,Location> exits;
-      private int id;
+      public string name;
 
-      public Location(string name)
+      //  private Item item {get; set;}
+      private Quest quest {get; set;}
+      private Dictionary <string,Location> exits {get; set;}
+      private int id {get; set;}
+
+      public Location(string name, Quest quest, Dictionary<string,Location> exits, int id /*, Item item*/ )
       {
             this.name = name;
+            this.quest = quest;
+            this.exits = exits;
+            this.id = id; 
+            //this.item = item;
       }
       public void SetExits(Location? up, Location? down, Location? right, Location? left)
       {
@@ -25,7 +27,7 @@ namespace TheNaturesLastStand
       }
       private void SetExit(string direction, Location? neighbor)
       {
-         if(neighbor!=null)
+         if(neighbor != null)
          {
             exits[direction] = neighbor;
          }
