@@ -2,7 +2,7 @@ namespace TheNaturesLastStand
 {
    public class Location
    {
-      public string name;
+      public string name {get;}
 
       //  private Item item {get; set;}
       private Quest quest {get; set;}
