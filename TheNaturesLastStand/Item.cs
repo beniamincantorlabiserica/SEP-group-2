@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace TheNaturesLastStand
 {
-    abstract class Item
+    public abstract class Item
     {
         public abstract void Use();
 
