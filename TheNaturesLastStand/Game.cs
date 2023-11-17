@@ -5,7 +5,7 @@
         public int score;
         private Screen Screen;
         private Command command;
-        private Seaside seasideBiome;
+        private Biome seasideBiome;
         private Inventory Player_Inventory;
 
         public Game()
@@ -26,37 +26,35 @@
             Player_Inventory.Add(new Item_Lasting(2, "Garbage", "A piece of garbage that you foind on the seashore"));
         }
 
-        private Seaside CreateSeaside() 
+        private Biome CreateSeaside() 
         {
-            List<Quest> allQuests = new List<Quest>{};
-            allQuests.Add(new Quest("Pick up plastic", "The plastic is not doing good for the nature"));
+            List<Location> Locations = new List<Location>() { new Location("Start", new Quest("Starter Quest", "Quest", "Good", "Bad"), null)};
+            Locations.Add(new Location("Upper Location",null,null));
+            Locations.Add(new Location("Lower Location", null, null));
+            Biome Seaside_Biome = new Biome("Seaside", "This is the Seaside Biome", Locations, 500);
 
-            List<Location> locations = new List<Location>{};
-            Stack<Item> Items = new Stack<Item>();
-            Items.Push(new Item_Lasting(1, "Cool Stick", "A cool stick"));
-            locations.Add(new Location("Test Location", "This is just a test description", 1, allQuests, Items));
-            Seaside seasideBiome = new Seaside("Seaside", "Seaside biome... the place where the water meets the land...", locations, 400);
-            return seasideBiome;
-
+            return Seaside_Biome;
         }
 
         private void Run() {
             bool playing = true;
+            int Current_Location_Index = 0;
 
             Screen.Display_Inventory_Contents(Player_Inventory);
             Screen.Update();
             Command.Help(Screen);
 
             while (playing) {
-                string userInput = Screen.ReadCommand();
+                string userInput = Screen.ReadCommand().ToLower().Trim();
                 if(command.VerifyCommand(userInput)) 
                 {
-                    switch (userInput.ToLower().Trim())
+                    switch (userInput)
                     {
                         case "move":
+                            Current_Location_Index = Command.Move_To(Screen, seasideBiome.locations.ToArray(), Current_Location_Index, userInput);
                             Screen.Write_To_Command_Window("You are in " + seasideBiome.locations[0].name + " biome.");
                             Screen.Write_To_Command_Window("New Quest Available!");
-                            Screen.Write_To_Command_Window(seasideBiome.locations[0].quests[0].name + " " +seasideBiome.locations[0].quests[0].description); 
+                            Screen.Write_To_Command_Window(seasideBiome.locations[0].quest.name + " " +seasideBiome.locations[0].quest.description); 
                             break;
                         case "gather":
                             Command.Gather(Screen, ref Player_Inventory, seasideBiome.locations[0]);

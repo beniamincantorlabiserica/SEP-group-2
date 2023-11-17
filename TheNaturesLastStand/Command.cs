@@ -41,17 +41,31 @@ namespace TheNaturesLastStand
             Screen.Draw_Box(Help_Text);
         }
 
-        public int Move_To(Screen Screen, Location[] Locations, int Current_Location_Index, string Input)
+        public static int Move_To(Screen Screen, Location[] Locations, int Current_Location_Index, string Input)
         {
-            //temp
-            return Current_Location_Index + 1;
+            //0 == up 1 == right 2 == down 3 == left
+            string Second_Argument = Input.Split(' ')[1];
+
+            switch (Second_Argument)
+            {
+                case "up":
+                    return 0;
+                case "right":
+                    return 1;
+                case "down":
+                    return 2;
+                case "left":
+                    return 3;
+                default:
+                    return 0;
+            }
         }
 
         public static void Gather(Screen Screen, ref Inventory Player_Inventory, Location Current_Location)
         {
-            if(Current_Location.Items.Count > 0)
+            if(Current_Location.item != null)
             {
-                Item New_Item = Current_Location.Items.Pop();
+                Item New_Item = Current_Location.item;
                 if(Player_Inventory.Add(New_Item))
                 {
                     Screen.Display_Inventory_Contents(Player_Inventory);
