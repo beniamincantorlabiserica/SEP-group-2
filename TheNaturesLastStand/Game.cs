@@ -3,9 +3,10 @@
     public class Game
     {
         public int score;
-        private GUI gui;
+        private Screen Screen;
         private Command command;
-        private Seaside seasideBiome;
+        private Biome seasideBiome;
+        private Inventory Player_Inventory;
 
         public Game()
         {
@@ -15,59 +16,64 @@
             Run();
         }
 
-        private void init() {
+        private void init() 
+        {
             seasideBiome = CreateSeaside();
-            gui = new GUI();
+            Screen = new Screen();
+            Screen.Start();
             command = new Command();
+            Player_Inventory = new Inventory(15);
+            Player_Inventory.Add(new Item_Lasting(2, "Garbage", "A piece of garbage that you foind on the seashore"));
         }
 
-        private Seaside CreateSeaside() {
-            List<Quest> allQuests = new List<Quest>{};
-            allQuests.Add(new Quest("Pick up plastic", "The plastic is not doing good for the nature"));
+        private Biome CreateSeaside() 
+        {
+            List<Location> Locations = new List<Location>() { new Location("Start", new Quest("Starter Quest", "Quest", "Good", "Bad"), null)};
+            Locations.Add(new Location("Upper Location",null,null));
+            Locations.Add(new Location("Lower Location", null, null));
+            Biome Seaside_Biome = new Biome("Seaside", "This is the Seaside Biome", Locations, 500);
 
-            List<Location> locations = new List<Location>{};
-            locations.Add(new Location("Test Location", "This is just a test description", 1, allQuests));
-            Seaside seasideBiome = new Seaside("Seaside", "Seaside biome... the place where the water meets the land...", locations, 400);
-            return seasideBiome;
-
+            return Seaside_Biome;
         }
 
         private void Run() {
             bool playing = true;
+            int Current_Location_Index = 0;
 
-            gui.Start(seasideBiome.name, seasideBiome.description);
-            
-            while(playing) {
-                string userInput = gui.ReadCommand(); 
-                if(command.VerifyCommand(userInput)) {
+            Screen.Display_Inventory_Contents(Player_Inventory);
+            Screen.Update();
+            Command.Help(Screen);
+
+            while (playing) {
+                string userInput = Screen.ReadCommand().ToLower().Trim();
+                if(command.VerifyCommand(userInput)) 
+                {
                     switch (userInput)
                     {
-                        case "Move": 
-                            gui.DisplayMessage("You are in " + seasideBiome.locations[0].name + " biome.\n");
-                            gui.DisplayMessage("New Quest Available!");
-                            gui.DisplayMessage(seasideBiome.locations[0].quests[0].name + "\n" + seasideBiome.locations[0].quests[0].description); 
+                        case "move":
+                            Current_Location_Index = Command.Move_To(Screen, seasideBiome.locations.ToArray(), Current_Location_Index, userInput);
+                            Screen.Write_To_Command_Window("You are in " + seasideBiome.locations[0].name + " biome.");
+                            Screen.Write_To_Command_Window("New Quest Available!");
+                            Screen.Write_To_Command_Window(seasideBiome.locations[0].quest.name + " " +seasideBiome.locations[0].quest.description); 
                             break;
-                        case "Pick":
-                            seasideBiome.locations[0].quests[0].done = true;
-                            gui.DisplayMessage("Congrats you finished the quest! +200 points");
-                            score += 200;
-                            gui.FinishedGame(score);
+                        case "gather":
+                            Command.Gather(Screen, ref Player_Inventory, seasideBiome.locations[0]);
+                            break;
+                        case "quit": 
                             playing = false;
                             break;
-                        case "Quit": 
-                            playing = false;
-                            break;
-                        case "Help": 
-                            gui.HelpMenu();
+                        case "help":
+                            Command.Help(Screen);
                             break;
                         default:
                             break;
                     }
                 } else {
-                    gui.DisplayInvalidCommand();
+                    Screen.Write_To_Command_Window("Invalid command");
                 }
             }
-            gui.GameOver();
+            Screen.GameOver();
+            Screen.Update();
         }
     }
 }

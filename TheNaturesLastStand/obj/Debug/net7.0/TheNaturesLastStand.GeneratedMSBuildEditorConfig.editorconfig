@@ -8,4 +8,8 @@ build_property.PlatformNeutralAssembly =
 build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = TheNaturesLastStand
+<<<<<<< HEAD
 build_property.ProjectDir = E:\TheNaturesLastStand\SEP-group-2\TheNaturesLastStand\
+=======
+build_property.ProjectDir = C:\Users\User\Desktop\c#\Sem-Project\TheNaturesLastStand\
+>>>>>>> main

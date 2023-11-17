@@ -1,8 +1,14 @@
 {
   "version": 2,
+<<<<<<< HEAD
   "dgSpecHash": "JorikNMbmNDn1JAP6FW6OSLyJxcCiGlZUDcDXLUhnwEkFvsrrhiejQEqPfAZkdDN6EYnVIYxOG/3EFGcHLd+NQ==",
   "success": true,
   "projectFilePath": "E:\\TheNaturesLastStand\\SEP-group-2\\TheNaturesLastStand\\TheNaturesLastStand.csproj",
+=======
+  "dgSpecHash": "VGsjOkB45fuL+kiColNuEoLaMLIxya1g6UL/0Nr7+AJUXk6Otu0l+TfX+VEZ5T4RrnwCZKoIwdtK5hxIyBAHTw==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\User\\Desktop\\c#\\Sem-Project\\TheNaturesLastStand\\TheNaturesLastStand.csproj",
+>>>>>>> main
   "expectedPackageFiles": [],
   "logs": []
 }
