@@ -3,6 +3,7 @@
     Point2D Command_Window_Position = new Point2D(2, 27);
     Point2D Input_Window_Position = new Point2D(2, 33);
     Point2D Center = new Point2D(43, 16);
+    Point2D Inventory_Window = new Point2D(2, 10);
     string[] Screen_Buffer;
 
     public Screen() { }
@@ -77,6 +78,27 @@
         return Console.ReadLine();
     }
 
+    public void Display_Inventory_Contents(Inventory Local_Inventory)
+    {
+        Item[] Items = Local_Inventory.Storage;
+
+        for (int Index = 0; Index < Items.Length; Index++)
+        {
+            string Line = '│' + (Index + 1).ToString();
+            
+            if (Items[Index].ID != 0)
+            {
+                Line += " " + Items[Index].Name;
+            }
+            else
+            {
+                Line += " ";
+            }
+
+            Insert_Into_Buffer(new Point2D(Inventory_Window.X, Inventory_Window.Y + Index), Line);
+        }
+    }
+
     //Put some text onto the command window
     public void Write_To_Command_Window(string text)
     {
@@ -134,6 +156,7 @@
         Console.Write(Lower_edge);
 
         Wait_For_Any_Key();
+        Update();
     }
 
     //A shorthand version of the Draw_Box() function that automatically centers and calcuates the width of the box
@@ -201,8 +224,8 @@
         int Command_Window_Width = Screen_Buffer[0].Length;
         if (text.Length <= Command_Window_Width && text.Length + Position.X <= Command_Window_Width)
         {
-            Screen_Buffer[Position.Y] = Screen_Buffer[Position.Y].Substring(0, Position.X-1) + text +
-                Screen_Buffer[Position.Y].Substring(Position.X + text.Length - 2, Command_Window_Width - (Position.X + text.Length));
+            Screen_Buffer[Position.Y] = Screen_Buffer[Position.Y].Substring(0, Position.X - 1) + text +
+                Screen_Buffer[Position.Y].Substring(Position.X + text.Length - 1, Command_Window_Width - (Position.X + text.Length));
             return true;
         }
         return false;
@@ -210,7 +233,13 @@
 
     private void Wait_For_Any_Key()
     {
+        Console.SetCursorPosition(80, 31);
+        Console.Write("...");
+        Console.SetCursorPosition(Input_Window_Position.X, Input_Window_Position.Y);
         Console.ReadKey();
+        Console.SetCursorPosition(80, 31);
+        Console.Write("   ");
+        Console.SetCursorPosition(Input_Window_Position.X, Input_Window_Position.Y);
     }
 
     private int Calc_Max_Line_Length(string text)
