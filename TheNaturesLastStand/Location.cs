@@ -3,32 +3,36 @@ namespace TheNaturesLastStand
 {
     public class Location
     {
-        //  private Item[] items=new Item[20];
-        public string name { get;}
-        public string description { get;}
-        public List<Quest> quests { set; get;}
-        public Stack<Item> Items = new Stack<Item>();
-        
-        private int currentAdvancements;
-        private int totalAdvancements;
-        public Location(string name, string description, int totalAdvancements, List<Quest> quests, Stack<Item> Items)
-        {
-            this.name = name;
-            this.description = description;
-            this.totalAdvancements = totalAdvancements;
-            currentAdvancements = 0;
-            this.quests = quests;
-            this.Items = Items;
-        }
+      public string name {get;}
 
-        public Location(string name, string description)
-        {
+      //  private Item item {get; set;}
+      private Quest quest {get; set;}
+      private Dictionary <string,Location> exits {get; set;}
+      private int id {get; set;}
+
+      public Location(string name, Quest quest, Dictionary<string,Location> exits, int id /*, Item item*/ )
+      {
             this.name = name;
-            this.description = description;
-            this.totalAdvancements = 0;
-            this.currentAdvancements = 0;
-            this.quests = new List<Quest>();
-            this.Items = new Stack<Item>();
-        }
+            this.quest = quest;
+            this.exits = exits;
+            this.id = id; 
+            //this.item = item;
+      }
+      public void SetExits(Location? up, Location? down, Location? right, Location? left)
+      {
+         SetExit("up", up);
+         SetExit("down", down);
+         SetExit("left", left);
+         SetExit("right", right);
+
+      }
+      private void SetExit(string direction, Location? neighbor)
+      {
+         if(neighbor != null)
+         {
+            exits[direction] = neighbor;
+         }
+      }
+
     }
 }
