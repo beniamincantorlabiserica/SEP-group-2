@@ -2,3 +2,17 @@
 /Users/beniamin/Documents/SDU/SEP/SEP-group-2/TheNaturesLastStand/obj/Debug/net7.0/TheNaturesLastStand.AssemblyInfoInputs.cache
 /Users/beniamin/Documents/SDU/SEP/SEP-group-2/TheNaturesLastStand/obj/Debug/net7.0/TheNaturesLastStand.AssemblyInfo.cs
 /Users/beniamin/Documents/SDU/SEP/SEP-group-2/TheNaturesLastStand/obj/Debug/net7.0/TheNaturesLastStand.csproj.CoreCompileInputs.cache
+C:\Users\User\Desktop\c#\Sem-Project\TheNaturesLastStand\bin\Debug\net7.0\TheNaturesLastStand.exe
+C:\Users\User\Desktop\c#\Sem-Project\TheNaturesLastStand\bin\Debug\net7.0\TheNaturesLastStand.deps.json
+C:\Users\User\Desktop\c#\Sem-Project\TheNaturesLastStand\bin\Debug\net7.0\TheNaturesLastStand.runtimeconfig.json
+C:\Users\User\Desktop\c#\Sem-Project\TheNaturesLastStand\bin\Debug\net7.0\TheNaturesLastStand.dll
+C:\Users\User\Desktop\c#\Sem-Project\TheNaturesLastStand\bin\Debug\net7.0\TheNaturesLastStand.pdb
+C:\Users\User\Desktop\c#\Sem-Project\TheNaturesLastStand\obj\Debug\net7.0\TheNaturesLastStand.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\User\Desktop\c#\Sem-Project\TheNaturesLastStand\obj\Debug\net7.0\TheNaturesLastStand.AssemblyInfoInputs.cache
+C:\Users\User\Desktop\c#\Sem-Project\TheNaturesLastStand\obj\Debug\net7.0\TheNaturesLastStand.AssemblyInfo.cs
+C:\Users\User\Desktop\c#\Sem-Project\TheNaturesLastStand\obj\Debug\net7.0\TheNaturesLastStand.csproj.CoreCompileInputs.cache
+C:\Users\User\Desktop\c#\Sem-Project\TheNaturesLastStand\obj\Debug\net7.0\TheNaturesLastStand.dll
+C:\Users\User\Desktop\c#\Sem-Project\TheNaturesLastStand\obj\Debug\net7.0\refint\TheNaturesLastStand.dll
+C:\Users\User\Desktop\c#\Sem-Project\TheNaturesLastStand\obj\Debug\net7.0\TheNaturesLastStand.pdb
+C:\Users\User\Desktop\c#\Sem-Project\TheNaturesLastStand\obj\Debug\net7.0\TheNaturesLastStand.genruntimeconfig.cache
+C:\Users\User\Desktop\c#\Sem-Project\TheNaturesLastStand\obj\Debug\net7.0\ref\TheNaturesLastStand.dll
