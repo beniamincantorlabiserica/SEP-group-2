@@ -1,0 +1,9 @@
+
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/.vs
+/TheNaturesLastStand/obj/project.assets.json
+bin
+obj
+
