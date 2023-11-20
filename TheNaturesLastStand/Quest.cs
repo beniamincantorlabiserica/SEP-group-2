@@ -9,13 +9,15 @@ namespace TheNaturesLastStand
         public string choiceBad;
         public string? choiceCurrent {set; get;}
         public bool done {set; get;}
-        public Quest(string name, string description, string choiceGood, string choiceBad)
+        public int currentQuestStage;
+        public Quest(string name, string description, string choiceGood, string choiceBad, int currentQuestStage)
         {
             this.name = name;
             this.description = description;
             this.choiceGood = choiceGood;
             this.choiceBad = choiceBad;
             done = false;
+            this.currentQuestStage = currentQuestStage;
         }
 
         public bool VerifyChoice(string choiceCurrent)
@@ -37,6 +39,30 @@ namespace TheNaturesLastStand
 
             else
                 return done = false;
+        }
+
+        public int QuestStageIncrease()
+        {
+            if (currentQuestStage == 1)
+                return currentQuestStage++;
+            
+            else if (currentQuestStage == 2)
+                return currentQuestStage++;
+
+            else
+                return currentQuestStage;
+        }
+
+        public int QuestStageDecrease()
+        {
+            if (currentQuestStage == 1)
+                return currentQuestStage;
+            
+            else if (currentQuestStage == 2)
+                return currentQuestStage--;
+
+            else
+                return currentQuestStage;
         }
     }
 }

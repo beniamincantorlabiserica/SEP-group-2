@@ -28,7 +28,7 @@
 
         private Biome CreateSeaside() 
         {
-            List<Location> Locations = new List<Location>() { new Location("Start", new Quest("Starter Quest", "Quest", "Good", "Bad"), null)};
+            List<Location> Locations = new List<Location>() { new Location("Start", new Quest("Starter Quest", "Quest", "Good", "Bad", 1), null)};
             Locations.Add(new Location("Upper Location",null,null));
             Locations.Add(new Location("Lower Location", null, null));
             Biome Seaside_Biome = new Biome("Seaside", "This is the Seaside Biome", Locations, 500);
