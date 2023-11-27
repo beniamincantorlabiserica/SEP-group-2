@@ -12,6 +12,10 @@ public class Biome
         Name = name;
         Description = description;
         LocationsList = locations;
+        foreach (var location in locations)
+        {
+            location.Biome = this;
+        }
         MinimumMoneyThreshold = minimumMoneyThreshold;
     }
 }
