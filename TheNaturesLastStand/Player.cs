@@ -1,5 +1,3 @@
-using System.Linq.Expressions;
-
 namespace TheNaturesLastStand;
 
 public class Player
@@ -20,7 +18,7 @@ public class Player
 
     public void Init()
     { 
-        // create biomes, locations and quests
+        CreateStoryline();
         ScreenManager.Init();
     }
 
@@ -30,37 +28,13 @@ public class Player
         {
             if (Command == "accept")
             {
-                ActiveQuests.Add(CurrentLocation.Quest);
                 CurrentLocation.Quest.State = QuestState.Active;
-                ScreenManager.DisplayMessage("You accepted this quest. It will be added in your active quests list");
-            } else if (Command == "decline")
-            {
-                ScreenManager.DisplayMessage("I am sorry to hear that...I guess somebody else has to save the planet");
-                CurrentLocation.Quest.State = QuestState.Seen;
-            }
-            else
+                ActiveQuests.Add(CurrentLocation.Quest);
+            }else if (Command != "decline")
             {
                 InvalidCommand();
-                CurrentLocation.Quest.State = QuestState.Seen;
             }
-        } else if (CurrentLocation.Quest is { Type: QuestType.Regular, State: QuestState.Seen })
-        {
-            if (Command == "accept")
-            {
-                ActiveQuests.Add(CurrentLocation.Quest);
-                CurrentLocation.Quest.State = QuestState.Active;
-                ScreenManager.DisplayMessage("You accepted this quest. It will be added in your active quests list");
-            } else if (Command == "decline")
-            {
-                ScreenManager.DisplayMessage("I am sorry to hear that...I guess somebody else has to save the planet");
-                CurrentLocation.Quest.State = QuestState.NotSeen;
-            }
-            else
-            {
-                InvalidCommand();
-                CurrentLocation.Quest.State = QuestState.NotSeen;
-            }
-        }
+        } 
         else
         {
             switch (Command)
@@ -73,7 +47,7 @@ public class Player
                     {
                         CurrentLocation = CurrentLocation.RightLocation;
                         ScreenManager.DisplayMessage(LocationSwitchMessage());
-                        UpdateLocationInfo();
+                        UpdateScreen("");
                     }
                     break;
                 case "move left":
@@ -81,7 +55,7 @@ public class Player
                     {
                         CurrentLocation = CurrentLocation.LeftLocation;
                         ScreenManager.DisplayMessage(LocationSwitchMessage());
-                        UpdateLocationInfo();
+                        UpdateScreen("");
                     }
                     break;
                 case "move up":
@@ -89,7 +63,7 @@ public class Player
                     {
                         CurrentLocation = CurrentLocation.UpLocation;
                         ScreenManager.DisplayMessage(LocationSwitchMessage());
-                        UpdateLocationInfo();
+                        UpdateScreen("");
                     }
                     break;
                 case "move down":
@@ -97,7 +71,7 @@ public class Player
                     {
                         CurrentLocation = CurrentLocation.DownLocation;
                         ScreenManager.DisplayMessage(LocationSwitchMessage());
-                        UpdateLocationInfo();
+                        UpdateScreen("");
                     }
                     break;
                 case "look":
@@ -107,10 +81,10 @@ public class Player
                         {
                             case QuestState.NotSeen: 
                                 CurrentLocation.Quest.State = QuestState.Seen;
-                                ScreenManager.DisplayMessage($"Someone is here, try talking by using \"talk\" command.");
+                                UpdateScreen($"Someone is here, try talking by using \"talk\" command.");
                                 break;
                             default: 
-                                ScreenManager.DisplayMessage($"Someone is here, try talking by using \"talk\" command.");
+                                UpdateScreen($"Someone is here, try talking by using \"talk\" command.");
                                 break;
                         }
                     }
@@ -120,13 +94,14 @@ public class Player
                         {
                             case QuestState.NotSeen:
                                 ScreenManager.DisplayMessage(CurrentLocation.Quest.Dialog[0]);
+                                CurrentLocation.Quest.State = QuestState.Talking;
                                 break;
                             case QuestState.Active:
                                 ScreenManager.DisplayMessage(CurrentLocation.Quest.Dialog[1]);
+                                CurrentLocation.Quest.State = QuestState.Talking;
                                 break;
                             case QuestState.Done:
-                                ScreenManager.DisplayMessage(
-                                    "You already completed this Quest. Try to find more quests in this biome");
+                                UpdateScreen("You already completed this Quest. Try to find more quests in this biome");
                                 break;
                             default:
                                 CurrentLocation.Quest.State = QuestState.Seen;
@@ -147,7 +122,7 @@ public class Player
                                 ScreenManager.DisplayMessage(CurrentLocation.Quest.Dialog[1]);
                                 break;
                             case QuestState.Done:
-                                ScreenManager.DisplayMessage("Your help was very welcome. Thank you for fighting for the planet!");
+                                UpdateScreen("Your help was very welcome. Thank you for fighting for the planet!");
                                 break;
                             default: 
                                 InvalidCommand();
@@ -173,7 +148,7 @@ public class Player
         
     }
 
-    private String LocationSwitchMessage()
+    private string LocationSwitchMessage()
     {
         return $"{CurrentLocation.Name} \n {CurrentLocation.Description} \n";
     }
@@ -187,6 +162,15 @@ public class Player
     {
         ScreenManager.DisplayMessage("Invalid Command");
     }
-    
+
+    public void CreateStoryline()
+    {
+        
+    }
+
+    private void UpdateScreen(string Message)
+    {
+        ScreenManager.UpdateScreen();
+    }
     
 }

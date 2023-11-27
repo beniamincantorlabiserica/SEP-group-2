@@ -13,7 +13,7 @@
         public void Run() {
 
             Player.Init();
-            
+            string[] fesf = new []{}
             while(true) {
                 string Command = Console.ReadLine() ?? string.Empty;
                 Player.DoCommand(Command.ToLower());
