@@ -23,9 +23,36 @@ public class ScreenManager
 
     public void DisplayExampleData()
     {
+        Thread.Sleep(1000);
         List<string> exampleQuestData = new List<string>();
         exampleQuestData.Add("Costel");
         UpdateScreen(150, exampleQuestData, "No Biome", "No Location", "No Message");
+        
+        Thread.Sleep(1000);
+        exampleQuestData = new List<string>();
+        exampleQuestData.Add("Costel");
+        exampleQuestData.Add("Adi");
+        exampleQuestData.Add("Ion");
+        exampleQuestData.Add("Ghita");
+        exampleQuestData.Add("Pavel");
+        exampleQuestData.Add("Costelus");
+        exampleQuestData.Add("Costelus");
+        exampleQuestData.Add("Costelus");
+        exampleQuestData.Add("Costelus");
+        exampleQuestData.Add("Costelus");
+        exampleQuestData.Add("Costelus");
+        exampleQuestData.Add("Costelus");
+        exampleQuestData.Add("Costelus");
+        exampleQuestData.Add("Costelus");
+        exampleQuestData.Add("Costelus");
+        exampleQuestData.Add("Costelus");
+        exampleQuestData.Add("Costelus");
+        exampleQuestData.Add("Costelus");
+        exampleQuestData.Add("Costelus");
+        exampleQuestData.Add("Costelus");
+        exampleQuestData.Add("Costelus");
+        UpdateScreen(77777, exampleQuestData, "Biome of the great", "Constanta Tropez, Marea Neagra", "Un mesaj foarte lung facut special ca sa vedem daca se taie la final de rand, sa fim siguri ca nu iese din peisaj sau ceva");
+
     }
     
     private void DisplayTitle()
@@ -89,12 +116,19 @@ public class ScreenManager
                 {
                     for (int j = 0; j < quests.Count; j++)
                     {
-                        if (j == _largeBoxHeight - 2)
+                        Console.SetCursorPosition(_inputBoxLeft, _largeBoxTop + i + j);
+                        if (j + i == _largeBoxHeight - 2)
                         {
                             Console.Write("│" + CenterTextInString("....", 30 - 2) + "│");
                         }
-                        Console.SetCursorPosition(_inputBoxLeft, _largeBoxTop + i + j);
-                        Console.Write("│" + CenterTextInString($"{j + 1}.{quests[j]}", 30 - 2) + "│");
+                        else if (j + i > _largeBoxHeight - 2)
+                        {
+                            continue;
+                        }
+                        else
+                        {
+                            Console.Write("│" + CenterTextInString($"{j + 1}.{quests[j]}", 30 - 2) + "│");
+                        }
                     }
 
                     i += quests.Count - 1;
@@ -139,10 +173,14 @@ public class ScreenManager
                 if (conversation.Length != 0)
                 {
                     List<string> conversationLines = SplitStringIntoLines(conversation, 30);
+                    var lineNumber = 0;
                     foreach (var line in conversationLines)
                     {
+                        Console.SetCursorPosition(_conversationBoxLeft, _conversationBoxTop + i + lineNumber);
                         Console.Write("│" + CenterTextInString($"{line}", 100 - 2) + "│");
+                        lineNumber++;
                     }
+                    i += conversationLines.Count - 1;
                 }
                 else
                 {
