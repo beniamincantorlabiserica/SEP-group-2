@@ -46,32 +46,28 @@ public class Player
                     if (CurrentLocation.RightLocation != null)
                     {
                         CurrentLocation = CurrentLocation.RightLocation;
-                        ScreenManager.DisplayMessage(LocationSwitchMessage());
-                        UpdateScreen("");
+                        UpdateScreen(LocationSwitchMessage());
                     }
                     break;
                 case "move left":
                     if (CurrentLocation.LeftLocation != null)
                     {
                         CurrentLocation = CurrentLocation.LeftLocation;
-                        ScreenManager.DisplayMessage(LocationSwitchMessage());
-                        UpdateScreen("");
+                        UpdateScreen(LocationSwitchMessage());
                     }
                     break;
                 case "move up":
                     if (CurrentLocation.UpLocation != null)
                     {
                         CurrentLocation = CurrentLocation.UpLocation;
-                        ScreenManager.DisplayMessage(LocationSwitchMessage());
-                        UpdateScreen("");
+                        UpdateScreen(LocationSwitchMessage());
                     }
                     break;
                 case "move down":
                     if (CurrentLocation.DownLocation != null)
                     {
                         CurrentLocation = CurrentLocation.DownLocation;
-                        ScreenManager.DisplayMessage(LocationSwitchMessage());
-                        UpdateScreen("");
+                        UpdateScreen(LocationSwitchMessage());
                     }
                     break;
                 case "look":
@@ -148,6 +144,8 @@ public class Player
         
     }
 
+    // TO-DO
+    // check when changing biome to add biome description otherwise add only location description
     private string LocationSwitchMessage()
     {
         return $"{CurrentLocation.Name} \n {CurrentLocation.Description} \n";
@@ -160,12 +158,12 @@ public class Player
 
     private void InvalidCommand()
     {
-        ScreenManager.DisplayMessage("Invalid Command");
+        UpdateScreen("Invalid Command");
     }
 
     public void CreateStoryline()
     {
-        
+        // create locations, biomes and quests
     }
 
     private void UpdateScreen(string message)
