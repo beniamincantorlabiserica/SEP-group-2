@@ -3,11 +3,18 @@
     public class Game
     {
         public Game() {
-
+            Run();
         }
 
-        public String ReadCommand() {
-            return Console.ReadLine();
+        public void Run() {
+
+            Player.init();
+            
+            while(true) {
+                string command = Console.ReadLine();
+                if(command.toLower() == "quit") break;
+                Player.DoCommand(command);
+            }
         }
     }
 }
