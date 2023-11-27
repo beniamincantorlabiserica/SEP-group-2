@@ -1,39 +1,29 @@
 
-namespace TheNaturesLastStand
+namespace TheNaturesLastStand;
+
+public class Location
 {
-    public class Location
-    {
-      public string name {get;}
-      public Item item {get; set;}
-      public Quest quest {get; set;}
-      private Dictionary <string,Location> exits {get; set;}
+   public Location(int id, string name, string description, Quest quest, Location rightLocation, Location leftLocation, Biome biome, Location upLocation, Location downLocation)
+   {
+      Id = id;
+      Name = name;
+      Description = description;
+      Quest = quest;
+      RightLocation = rightLocation;
+      LeftLocation = leftLocation;
+      Biome = biome;
+      UpLocation = upLocation;
+      DownLocation = downLocation;
+   }
 
-      private int id {get; set;}
+   public int Id { get; set; }
+   public string Name { get; set; }
+   public string Description { get; set; }
+   public Quest Quest { get; set; }
+   public Location RightLocation { get; set; }
+   public Location LeftLocation { get; set; }
+   public Location UpLocation { get; set; }
+   public Location DownLocation { get; set; }
+   public Biome Biome { get; set; }
 
-      public Location(string name, Quest? quest, Item? item )
-      {
-            this.name = name;
-            this.quest = quest;
-            this.exits = new Dictionary<string, Location>();
-            this.id = id; 
-            this.item = item;
-      }
-
-      public void SetExits(Location? up, Location? down, Location? right, Location? left)
-      {
-         SetExit("up", up);
-         SetExit("down", down);
-         SetExit("left", left);
-         SetExit("right", right);
-
-      }
-      private void SetExit(string direction, Location? neighbor)
-      {
-         if(neighbor != null)
-         {
-            exits[direction] = neighbor;
-         }
-      }
-
-    }
 }
