@@ -168,9 +168,9 @@ public class Player
         
     }
 
-    private void UpdateScreen(string Message)
+    private void UpdateScreen(string message)
     {
-        ScreenManager.UpdateScreen();
+        ScreenManager.UpdateScreen(Balance, ActiveQuests, CurrentLocation.Biome.Name, CurrentLocation.Name, message);
     }
     
 }
