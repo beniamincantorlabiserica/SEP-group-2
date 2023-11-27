@@ -13,9 +13,10 @@
         public void Run() {
 
             Player.Init();
-            string[] fesf = new []{}
-            while(true) {
-                string Command = Console.ReadLine() ?? string.Empty;
+            
+            while(true)
+            {
+                string Command = Player.ScreenManager.ReadCommand();
                 Player.DoCommand(Command.ToLower());
                 if(Command.ToLower() == "quit") break;
             }

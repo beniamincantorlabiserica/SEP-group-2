@@ -6,7 +6,7 @@ public class Player
     public Location CurrentLocation { get; set; }
     public List<Quest> ActiveQuests { get; set; }
     public List<Biome> BiomeList { get; set; }
-    private ScreenManager ScreenManager;
+    public ScreenManager ScreenManager { get; }
     
     
 
