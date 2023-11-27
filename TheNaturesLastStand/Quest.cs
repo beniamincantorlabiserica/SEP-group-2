@@ -4,6 +4,7 @@ namespace TheNaturesLastStand;
 public class Quest
 {
     public QuestState State { get; set; }
+    public QuestType Type { get; set; }
     public int RewardAmount { get; set; }
     public string[] Dialog { get; set; }
     public string PositiveCommand { get; set; }
@@ -22,6 +23,13 @@ public class Quest
 public enum QuestState
 {
     NotSeen,
+    Seen,
     Active,
     Done
+}
+
+public enum QuestType
+{
+    NpcQuest,
+    Regular
 }
