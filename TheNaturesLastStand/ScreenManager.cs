@@ -7,27 +7,114 @@ public class ScreenManager
     private int _inputBoxTop;
     private int _inputBoxLeft;
     
-    private int _largeBoxHeight;
-    private int _largeBoxTop;
-    private int _largeBoxWidth;
+    private int _stateBoxHeight;
+    private int _stateBoxTop;
+    private int _stateBoxWidth;
 
     private int _conversationBoxWidth;
     private int _conversationBoxHeight;
     private int _conversationBoxTop;
     private int _conversationBoxLeft;
-    
+
     public ScreenManager()
     {
         Init();
     }
 
+    public void Init()
+    {
+        DisplayTitle();
+        _inputBoxWidth = 132;
+        _inputBoxHeight = 3;
+        _inputBoxLeft = 3;
+        _stateBoxHeight = 20;
+        _stateBoxWidth = 30;
+        
+        int titleBottom = 5;
+        int spacingBetweenTitleAndLargeBox = 2;
+        _stateBoxTop = titleBottom + spacingBetweenTitleAndLargeBox;
+
+        _inputBoxTop = _stateBoxTop + _stateBoxHeight + spacingBetweenTitleAndLargeBox - 2;
+        
+        _conversationBoxWidth = 100;
+        _conversationBoxHeight = _stateBoxHeight;
+        _conversationBoxLeft = _inputBoxLeft + _stateBoxWidth + 2;
+        _conversationBoxTop = _stateBoxTop;
+
+    }
+
+    public void UpdateScreen(int balance, List<string> quests, string biome, string location, string message)
+    {
+        DisplayStatusBox(balance, quests);
+        DisplayConversationBox(biome, location, message);
+        DisplayInputBox();
+        SetCursorToInsideInputBox();
+    }
+
+    public string ReadCommand()
+    {
+        return Console.ReadLine() ?? "";
+    }
+
+    public void DisplayGameOver()
+    {
+        var gameOverString = 
+            @"  ________                        ________                     
+ /  _____/_____    _____   ____   \_____  \___  __ ___________ 
+/   \  ___\__  \  /     \_/ __ \   /   |   \  \/ // __ \_  __ \
+\    \_\  \/ __ \|  Y Y  \  ___/  /    |    \   /\  ___/|  | \/
+ \______  (____  /__|_|  /\___  > \_______  /\_/  \___  >__|   
+        \/     \/      \/     \/          \/          \/       
+                                                               
+                    Thank you for playing!                     ";
+        Console.Clear();
+        Console.Write(gameOverString);
+    }
+
+    public void DisplayHelp()
+    {
+        //TODO
+    }
+
+    public void DisplayTutorial()
+    {
+        // TODO
+    }
+
     public void DisplayExampleData()
     {
+        Thread.Sleep(1000);
         List<string> exampleQuestData = new List<string>();
         exampleQuestData.Add("Costel");
         UpdateScreen(150, exampleQuestData, "No Biome", "No Location", "No Message");
+        
+        Thread.Sleep(1000);
+        exampleQuestData = new List<string>();
+        exampleQuestData.Add("Costel");
+        exampleQuestData.Add("Adi");
+        exampleQuestData.Add("Ion");
+        exampleQuestData.Add("Ghita");
+        exampleQuestData.Add("Pavel");
+        exampleQuestData.Add("Costelus");
+        exampleQuestData.Add("Costelus");
+        exampleQuestData.Add("Costelus");
+        exampleQuestData.Add("Costelus");
+        exampleQuestData.Add("Costelus");
+        exampleQuestData.Add("Costelus");
+        exampleQuestData.Add("Costelus");
+        exampleQuestData.Add("Costelus");
+        exampleQuestData.Add("Costelus");
+        exampleQuestData.Add("Costelus");
+        exampleQuestData.Add("Costelus");
+        exampleQuestData.Add("Costelus");
+        exampleQuestData.Add("Costelus");
+        exampleQuestData.Add("Costelus");
+        exampleQuestData.Add("Costelus");
+        exampleQuestData.Add("Costelus");
+        UpdateScreen(77777, exampleQuestData, "Biome of the great", "Constanta Tropez, Marea Neagra", "Un mesaj foarte lung facut special ca sa vedem daca se taie la final de rand, sa fim siguri ca nu iese din peisaj sau ceva");
+
     }
-    
+
     private void DisplayTitle()
     {
         string title = @"                         _   _       _                  _       _           _         _                  _ 
@@ -40,15 +127,7 @@ public class ScreenManager
         Console.Write(title);
     }
 
-    public void UpdateScreen(int balance, List<string> quests, string biome, string location, string message)
-    {
-        DrawStatusBox(balance, quests);
-        DrawConversationBox(biome, location, message);
-        DrawInputBox();
-        SetCursorToInside();
-    }
-    
-    private void DrawInputBox()
+    private void DisplayInputBox()
     {
         Console.SetCursorPosition(_inputBoxLeft, _inputBoxTop);
         Console.Write("┌" + new string('─', _inputBoxWidth - 2) + "┐");
@@ -62,15 +141,15 @@ public class ScreenManager
         Console.SetCursorPosition(_inputBoxLeft, _inputBoxTop + _inputBoxHeight - 1);
         Console.Write("└" + new string('─', _inputBoxWidth - 2) + "┘");
     }
-    
-    private void DrawStatusBox(int balance, List<string> quests)
-    {
-        Console.SetCursorPosition(_inputBoxLeft, _largeBoxTop);
-        Console.Write("┌" + new string('─', _largeBoxWidth - 2) + "┐");
 
-        for (int i = 1; i < _largeBoxHeight - 1; i++)
+    private void DisplayStatusBox(int balance, List<string> quests)
+    {
+        Console.SetCursorPosition(_inputBoxLeft, _stateBoxTop);
+        Console.Write("┌" + new string('─', _stateBoxWidth - 2) + "┐");
+
+        for (int i = 1; i < _stateBoxHeight - 1; i++)
         {
-            Console.SetCursorPosition(_inputBoxLeft, _largeBoxTop + i);
+            Console.SetCursorPosition(_inputBoxLeft, _stateBoxTop + i);
             if (i == 1)
             {
                 Console.Write("│" + CenterTextInString($"Balance: {balance}$", 30 - 2) + "│");
@@ -81,7 +160,7 @@ public class ScreenManager
             }
             else if (i == 4)
             {
-                Console.Write("│" + new string('─', _largeBoxWidth - 2) + "│");
+                Console.Write("│" + new string('─', _stateBoxWidth - 2) + "│");
             }
             else if (i == 5)
             {
@@ -89,12 +168,19 @@ public class ScreenManager
                 {
                     for (int j = 0; j < quests.Count; j++)
                     {
-                        if (j == _largeBoxHeight - 2)
+                        Console.SetCursorPosition(_inputBoxLeft, _stateBoxTop + i + j);
+                        if (j + i == _stateBoxHeight - 2)
                         {
                             Console.Write("│" + CenterTextInString("....", 30 - 2) + "│");
                         }
-                        Console.SetCursorPosition(_inputBoxLeft, _largeBoxTop + i + j);
-                        Console.Write("│" + CenterTextInString($"{j + 1}.{quests[j]}", 30 - 2) + "│");
+                        else if (j + i > _stateBoxHeight - 2)
+                        {
+                            
+                        }
+                        else
+                        {
+                            Console.Write("│" + CenterTextInString($"{j + 1}.{quests[j]}", 30 - 2) + "│");
+                        }
                     }
 
                     i += quests.Count - 1;
@@ -106,15 +192,15 @@ public class ScreenManager
             }
             else
             {
-                Console.Write("│" + new string(' ', _largeBoxWidth - 2) + "│");
+                Console.Write("│" + new string(' ', _stateBoxWidth - 2) + "│");
             }
         }
 
-        Console.SetCursorPosition(_inputBoxLeft, _largeBoxTop + _largeBoxHeight - 1);
-        Console.Write("└" + new string('─', _largeBoxWidth - 2) + "┘");
+        Console.SetCursorPosition(_inputBoxLeft, _stateBoxTop + _stateBoxHeight - 1);
+        Console.Write("└" + new string('─', _stateBoxWidth - 2) + "┘");
     }
-    
-    private void DrawConversationBox(string biome, string location, string conversation)
+
+    private void DisplayConversationBox(string biome, string location, string conversation)
     {
         Console.SetCursorPosition(_conversationBoxLeft, _conversationBoxTop);
         Console.Write("┌" + new string('─', _conversationBoxWidth - 2) + "┐");
@@ -139,10 +225,14 @@ public class ScreenManager
                 if (conversation.Length != 0)
                 {
                     List<string> conversationLines = SplitStringIntoLines(conversation, 30);
+                    var lineNumber = 0;
                     foreach (var line in conversationLines)
                     {
+                        Console.SetCursorPosition(_conversationBoxLeft, _conversationBoxTop + i + lineNumber);
                         Console.Write("│" + CenterTextInString($"{line}", 100 - 2) + "│");
+                        lineNumber++;
                     }
+                    i += conversationLines.Count - 1;
                 }
                 else
                 {
@@ -157,6 +247,11 @@ public class ScreenManager
 
         Console.SetCursorPosition(_conversationBoxLeft, _conversationBoxTop + _conversationBoxHeight - 1);
         Console.Write("└" + new string('─', _conversationBoxWidth - 2) + "┘");
+    }
+
+    private void SetCursorToInsideInputBox()
+    {
+        Console.SetCursorPosition(_inputBoxLeft + 1, _inputBoxTop + 1);
     }
 
     private string CenterTextInString(string text, int totalWidth)
@@ -192,62 +287,5 @@ public class ScreenManager
 
         lines.Add(text);
         return lines;
-    }
-    
-    private void SetCursorToInside()
-    {
-        Console.SetCursorPosition(_inputBoxLeft + 1, _inputBoxTop + 1);
-    }
-
-    public void DisplayGameOver()
-    {
-        var gameOverString = 
-            @"  ________                        ________                     
- /  _____/_____    _____   ____   \_____  \___  __ ___________ 
-/   \  ___\__  \  /     \_/ __ \   /   |   \  \/ // __ \_  __ \
-\    \_\  \/ __ \|  Y Y  \  ___/  /    |    \   /\  ___/|  | \/
- \______  (____  /__|_|  /\___  > \_______  /\_/  \___  >__|   
-        \/     \/      \/     \/          \/          \/       
-                                                               
-                    Thank you for playing!                     ";
-        Console.Clear();
-        Console.Write(gameOverString);
-    }
-
-    public void DisplayHelp()
-    {
-        //TODO
-    }
-
-    public string ReadCommand()
-    {
-        return Console.ReadLine() ?? "";
-    }
-    
-    public void Init()
-    {
-        DisplayTitle();
-        _inputBoxWidth = 132;
-        _inputBoxHeight = 3;
-        _inputBoxLeft = 3;
-        _largeBoxHeight = 20;
-        _largeBoxWidth = 30;
-        
-        int titleBottom = 5;
-        int spacingBetweenTitleAndLargeBox = 2;
-        _largeBoxTop = titleBottom + spacingBetweenTitleAndLargeBox;
-
-        _inputBoxTop = _largeBoxTop + _largeBoxHeight + spacingBetweenTitleAndLargeBox - 2;
-        
-        _conversationBoxWidth = 100;
-        _conversationBoxHeight = _largeBoxHeight;
-        _conversationBoxLeft = _inputBoxLeft + _largeBoxWidth + 2;
-        _conversationBoxTop = _largeBoxTop;
-
-    }
-
-    public void DisplayTutorial()
-    {
-        // TODO
     }
 }
