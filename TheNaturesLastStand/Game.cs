@@ -6,6 +6,7 @@
         private ScreenManager ScreenManager;
         public Game()
         {
+            ScreenManager = new ScreenManager();
             Player = new Player(ScreenManager);
             Run();
         }

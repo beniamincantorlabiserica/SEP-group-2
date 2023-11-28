@@ -3,15 +3,15 @@ namespace TheNaturesLastStand;
 
 public class Location
 {
-   public Location(int id, string name, string description, Quest quest, Location rightLocation, Location leftLocation, Biome biome, Location upLocation, Location downLocation)
+   public Location(int id, string name, string description, Quest quest, Location? rightLocation, Location? leftLocation, Location? upLocation, Location? downLocation , Biome biome)
    {
       Id = id;
       Name = name;
       Description = description;
       Quest = quest;
+      Biome = biome;
       RightLocation = rightLocation;
       LeftLocation = leftLocation;
-      Biome = biome;
       UpLocation = upLocation;
       DownLocation = downLocation;
    }
