@@ -19,8 +19,8 @@ public class Player
     public void Init()
     {
         ContentProvider = new ContentProvider();
+        ActiveQuests = new List<Quest>();
         CurrentLocation = ContentProvider.GetStartingLocation();
-        ScreenManager.Init();
     }
 
     public void DoCommand(string Command)
@@ -81,6 +81,7 @@ public class Player
                 {
                     CurrentLocation.Quest.State = QuestState.Active;
                     ActiveQuests.Add(CurrentLocation.Quest);
+                    UpdateScreen("You accepted this quest, to do something about it, try looking again...");
                 }
                 else
                 {
@@ -91,6 +92,7 @@ public class Player
             {
                 CurrentLocation.Quest.State = QuestState.Active;
                 ActiveQuests.Add(CurrentLocation.Quest);
+                UpdateScreen("You accepted this quest, to do something about it, try looking again...");
             }
         }
         else if (Command == "decline")
@@ -106,6 +108,7 @@ public class Player
         {
             CurrentLocation.Quest.State = QuestState.Done;
             Balance += CurrentLocation.Quest.RewardAmount;
+            ActiveQuests.Remove(CurrentLocation.Quest);
             UpdateScreen(CurrentLocation.Quest.Dialog[2]);
         }
         else if (Command == CurrentLocation.Quest.NegativeCommand)
@@ -137,12 +140,12 @@ public class Player
                 {
                     case QuestState.NotSeen:
                         UpdateScreen(CurrentLocation.Quest.Description +
-                                     "\n\nWould you like to accept this quest? \n\n >accept \n >decline)");
+                                     "\n\nWould you like to accept this quest? \n\n >accept \n >decline");
                         CurrentLocation.Quest.State = QuestState.Seen;
                         break;
                     case QuestState.Seen:
                         UpdateScreen(CurrentLocation.Quest.Description +
-                                     "\n\nWould you like to accept this quest? \n\n >accept \n >decline)");
+                                     "\n\nWould you like to accept this quest? \n\n >accept \n >decline");
                         CurrentLocation.Quest.State = QuestState.Seen;
                         break;
                     case QuestState.Active:
@@ -183,6 +186,10 @@ public class Player
         else if (Command == "quit")
         {
             ScreenManager.DisplayGameOver();
+        }
+        else
+        {
+            InvalidCommand();
         }
     }
 

@@ -12,7 +12,7 @@ public class Quest
     public string PositiveCommand { get; set; }
     public string NegativeCommand { get; set; }
 
-    public Quest(string positiveCommand, string negativeCommand, string[] dialog, int rewardAmount, string name, string description)
+    public Quest(string positiveCommand, string negativeCommand, string[] dialog, int rewardAmount, string name, string description, QuestType type = QuestType.Regular)
     {
         PositiveCommand = positiveCommand;
         NegativeCommand = negativeCommand;
@@ -20,7 +20,13 @@ public class Quest
         RewardAmount = rewardAmount;
         Name = name;
         Description = description;
-        State = QuestState.NotSeen;;
+        Type = type;
+        State = QuestState.NotSeen;
+    }
+
+    public Quest(QuestState state)
+    {
+        State = state;
     }
 }
 

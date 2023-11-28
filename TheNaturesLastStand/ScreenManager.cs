@@ -40,6 +40,7 @@ public class ScreenManager
         _conversationBoxHeight = _stateBoxHeight;
         _conversationBoxLeft = _inputBoxLeft + _stateBoxWidth + 2;
         _conversationBoxTop = _stateBoxTop;
+        UpdateScreen(0, new List<string>(), "", "", "");
 
     }
 
@@ -224,7 +225,7 @@ public class ScreenManager
             {
                 if (conversation.Length != 0)
                 {
-                    List<string> conversationLines = SplitStringIntoLines(conversation, 30);
+                    List<string> conversationLines = SplitStringIntoLines(conversation, 70);
                     var lineNumber = 0;
                     foreach (var line in conversationLines)
                     {
@@ -276,16 +277,22 @@ public class ScreenManager
             return lines;
         }
 
-        while (text.Length > maxCharsPerLine)
+        var rows = text.Split('\n');
+
+        foreach (var row in rows)
         {
-            int splitIndex = text.LastIndexOf(' ', maxCharsPerLine);
-            if (splitIndex == -1) splitIndex = maxCharsPerLine;
+            text = row;
+            while (text.Length > maxCharsPerLine)
+            {
+                int splitIndex = text.LastIndexOf(' ', maxCharsPerLine);
+                if (splitIndex == -1) splitIndex = maxCharsPerLine;
 
-            lines.Add(text.Substring(0, splitIndex));
-            text = text.Substring(splitIndex).TrimStart();
+                lines.Add(text.Substring(0, splitIndex));
+                text = text.Substring(splitIndex).TrimStart();
+            }
+            lines.Add(text);
         }
-
-        lines.Add(text);
+        
         return lines;
     }
 }
