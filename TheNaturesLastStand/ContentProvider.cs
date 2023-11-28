@@ -21,7 +21,6 @@ public class ContentProvider
         _locations[0].Biome = _biomes[0];
         _locations[1].Biome = _biomes[0];
         _locations[2].Biome = _biomes[0];
-        _biomes[0].LocationsList = _locations;
         _locations[0].Quest = _quests[0];
         _locations[1].Quest = _quests[1];
         _locations[2].Quest = _quests[2];
@@ -53,7 +52,7 @@ public class ContentProvider
     private List<Biome> GenerateBiomes()
     {
         var biomes = new List<Biome>();
-        biomes.Add(new Biome("Biome 1", "Biome 1 Description", 0, null));
+        biomes.Add(new Biome("Biome 1", "Biome 1 Description", 0, _locations));
         return biomes;
     }
 }
