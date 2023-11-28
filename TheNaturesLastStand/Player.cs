@@ -7,18 +7,19 @@ public class Player
     public List<Quest> ActiveQuests { get; set; }
     public List<Biome> BiomeList { get; set; }
     public ScreenManager ScreenManager { get; }
+    public ContentProvider ContentProvider { get; set; }
     
     
 
     public Player(ScreenManager ScreenManager)
     {
         this.ScreenManager = ScreenManager;
-        UpdateLocationInfo();
     }
 
     public void Init()
-    { 
-        CreateStoryline();
+    {
+        ContentProvider = new ContentProvider();
+        CurrentLocation = ContentProvider.GetStartingLocation();
         ScreenManager.Init();
     }
 
@@ -189,22 +190,12 @@ public class Player
     // check when changing biome to add biome description otherwise add only location description
     private string LocationSwitchMessage()
     {
-        return $"{CurrentLocation.Name} \n {CurrentLocation.Description} \n";
-    }
-
-    private void UpdateLocationInfo()
-    {
-        //ScreenManager.UpdateLocationInfo(CurrentLocation);
+        return CurrentLocation.Description;
     }
 
     private void InvalidCommand()
     {
         UpdateScreen("Invalid Command");
-    }
-
-    public void CreateStoryline()
-    {
-        // create locations, biomes and quests
     }
 
     private void UpdateScreen(string message)
