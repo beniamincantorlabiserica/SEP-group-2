@@ -8,19 +8,34 @@ public class Player
     public List<Biome> BiomeList { get; set; }
     public ScreenManager ScreenManager { get; }
     public ContentProvider ContentProvider { get; set; }
+    private HashSet<Location> SeenLocations;
+    private HashSet<Quest> SeenQuests;
+    private HashSet<Biome> SeenBiome;
+    private int LocationCount;
+    private int QuestCount;
+    private int BiomeCount;
+    private double Progress;
     
     
 
     public Player(ScreenManager ScreenManager)
     {
-        this.ScreenManager = ScreenManager;
+        this.ScreenManager = ScreenManager;  
     }
 
     public void Init()
     {
         ContentProvider = new ContentProvider();
         ActiveQuests = new List<Quest>();
+        SeenQuests = new HashSet<Quest>();
+        SeenBiome = new HashSet<Biome>();
+        SeenLocations = new HashSet<Location>();
         CurrentLocation = ContentProvider.GetStartingLocation();
+        SeenLocations.Add(CurrentLocation);
+        SeenBiome.Add(CurrentLocation.Biome);
+        (LocationCount, QuestCount) = ContentProvider.GetMaxProgressState();
+        BiomeCount = 5;
+        Progress = 0;
     }
 
     public void DoCommand(string Command)
@@ -33,6 +48,8 @@ public class Player
                 {
                     if (CurrentLocation.RightLocation.Biome.MinimumMoneyThreshold < Balance)
                     {
+                        SeenLocations.Add(CurrentLocation.RightLocation);
+                        SeenBiome.Add(CurrentLocation.RightLocation.Biome);
                         CurrentLocation = CurrentLocation.RightLocation;
                         UpdateScreen(LocationSwitchMessage());
                     }
@@ -43,6 +60,7 @@ public class Player
                 }
                 else
                 {
+                    SeenLocations.Add(CurrentLocation.RightLocation);
                     CurrentLocation = CurrentLocation.RightLocation;
                     UpdateScreen(LocationSwitchMessage());
                 }
@@ -61,6 +79,8 @@ public class Player
                 {
                     if (CurrentLocation.LeftLocation.Biome.MinimumMoneyThreshold < Balance)
                     {
+                        SeenLocations.Add(CurrentLocation.LeftLocation);
+                        SeenBiome.Add(CurrentLocation.LeftLocation.Biome);
                         CurrentLocation = CurrentLocation.LeftLocation;
                         UpdateScreen(LocationSwitchMessage());
                     }
@@ -71,6 +91,7 @@ public class Player
                 }
                 else
                 {
+                    SeenLocations.Add(CurrentLocation.LeftLocation);
                     CurrentLocation = CurrentLocation.LeftLocation;
                     UpdateScreen(LocationSwitchMessage());
                 }
@@ -88,6 +109,8 @@ public class Player
                 {
                     if (CurrentLocation.UpLocation.Biome.MinimumMoneyThreshold < Balance)
                     {
+                        SeenLocations.Add(CurrentLocation.UpLocation);
+                        SeenBiome.Add(CurrentLocation.UpLocation.Biome);
                         CurrentLocation = CurrentLocation.UpLocation;
                         UpdateScreen(LocationSwitchMessage());
                     }
@@ -98,6 +121,7 @@ public class Player
                 }
                 else
                 {
+                    SeenLocations.Add(CurrentLocation.UpLocation);
                     CurrentLocation = CurrentLocation.UpLocation;
                     UpdateScreen(LocationSwitchMessage());
                 }
@@ -115,6 +139,8 @@ public class Player
                 {
                     if (CurrentLocation.DownLocation.Biome.MinimumMoneyThreshold < Balance)
                     {
+                        SeenLocations.Add(CurrentLocation.DownLocation);
+                        SeenBiome.Add(CurrentLocation.DownLocation.Biome);
                         CurrentLocation = CurrentLocation.DownLocation;
                         UpdateScreen(LocationSwitchMessage());
                     }
@@ -125,6 +151,7 @@ public class Player
                 }
                 else
                 {
+                    SeenLocations.Add(CurrentLocation.DownLocation);
                     CurrentLocation = CurrentLocation.DownLocation;
                     UpdateScreen(LocationSwitchMessage());
                 }
@@ -172,6 +199,7 @@ public class Player
                 CurrentLocation.Quest.State = QuestState.Done;
                 Balance += CurrentLocation.Quest.RewardAmount;
                 ActiveQuests.Remove(CurrentLocation.Quest);
+                SeenQuests.Add(CurrentLocation.Quest);
                 UpdateScreen(CurrentLocation.Quest.Dialog[2]);
             }
             else
@@ -285,11 +313,9 @@ public class Player
         {
             activeQuestsStringList.Add(quest.Name);
         }
-
         
-       //TODO 
-       // send the available exits list to screen manager
-        ScreenManager.UpdateScreen(Balance, activeQuestsStringList, CurrentLocation.Biome.Name, CurrentLocation.Name, message);
+        CalculateProgress();
+        ScreenManager.UpdateScreen(Balance, activeQuestsStringList, CurrentLocation.Biome.Name, CurrentLocation, message, Progress);
     }
 
     private List<string> GetAvailableExits()
@@ -313,6 +339,13 @@ public class Player
         }
 
         return availableExits;
+    }
+
+    private void CalculateProgress()
+    {
+        double scorePerTask = 100 / (BiomeCount + LocationCount + QuestCount);
+        int totalTasksCompleted = SeenBiome.Count + SeenLocations.Count + SeenQuests.Count;
+        Progress = scorePerTask * totalTasksCompleted;
     }
     
 }
