@@ -7,7 +7,7 @@ public class ContentProvider
     private readonly List<Quest> _quests = new();
     private readonly List<Location> _locations = new();
     private readonly List<Biome> _biomes = new();
-    private readonly bool debugMode = true;
+    private readonly bool debugMode = false;
     public ContentProvider()
     {
         GenerateBiomes();

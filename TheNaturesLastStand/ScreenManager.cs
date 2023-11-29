@@ -26,7 +26,7 @@ public class ScreenManager
         Init();
     }
 
-    public void Init()
+    private void Init()
     {
         DisplayTitle();
         _inputBoxWidth = 132;
@@ -35,8 +35,8 @@ public class ScreenManager
         _stateBoxHeight = 20;
         _stateBoxWidth = 30;
         
-        int titleBottom = 5;
-        int spacingBetweenTitleAndLargeBox = 2;
+        const int titleBottom = 5;
+        const int spacingBetweenTitleAndLargeBox = 2;
         _stateBoxTop = titleBottom + spacingBetweenTitleAndLargeBox;
 
         _inputBoxTop = _stateBoxTop + _stateBoxHeight + spacingBetweenTitleAndLargeBox - 2;
@@ -58,7 +58,7 @@ public class ScreenManager
     {
         DisplayStatusBox(balance, quests);
         DisplayConversationBox(biome, location.Name, message, progress);
-        DisplayMapBox("Gigolo", null, null, null, null);
+        DisplayMapBox( location.LeftLocation, location.RightLocation, location.UpLocation, location.DownLocation);
         DisplayInputBox();
         SetCursorToInsideInputBox();
     }
@@ -70,15 +70,16 @@ public class ScreenManager
 
     public void DisplayGameOver()
     {
-        var gameOverString = 
-            @"  ________                        ________                     
- /  _____/_____    _____   ____   \_____  \___  __ ___________ 
-/   \  ___\__  \  /     \_/ __ \   /   |   \  \/ // __ \_  __ \
-\    \_\  \/ __ \|  Y Y  \  ___/  /    |    \   /\  ___/|  | \/
- \______  (____  /__|_|  /\___  > \_______  /\_/  \___  >__|   
-        \/     \/      \/     \/          \/          \/       
-                                                               
-                    Thank you for playing!                     ";
+        const string gameOverString = """
+                                        ________                        ________
+                                       /  _____/_____    _____   ____   \_____  \___  __ ___________
+                                      /   \  ___\__  \  /     \_/ __ \   /   |   \  \/ // __ \_  __ \
+                                      \    \_\  \/ __ \|  Y Y  \  ___/  /    |    \   /\  ___/|  | \/
+                                       \______  (____  /__|_|  /\___  > \_______  /\_/  \___  >__|
+                                              \/     \/      \/     \/          \/          \/
+                                                                                                     
+                                                          Thank you for playing!
+                                      """;
         Console.Clear();
         Console.Write(gameOverString);
     }
@@ -95,13 +96,16 @@ public class ScreenManager
 
     private void DisplayTitle()
     {
-        string title = @"                         _   _       _                  _       _           _         _                  _ 
-                         | \ | |     | |                ( )     | |         | |       | |                | | 
-                         |  \| | __ _| |_ _   _ _ __ ___|/ ___  | | __ _ ___| |_   ___| |_ __ _ _ __   __| | 
-                         | . ` |/ _` | __| | | | '__/ _ \ / __| | |/ _` / __| __| / __| __/ _` | '_ \ / _` | 
-                         | |\  | (_| | |_| |_| | | |  __/ \__ \ | | (_| \__ \ |_  \__ \ || (_| | | | | (_| | 
-                         |_| \_|\__,_|\__|\__,_|_|  \___| |___/ |_|\__,_|___/\__| |___/\__\__,_|_| |_|\__,_| 
-                                                                                     ";
+        const string title = """
+                             
+                                                                       _   _       _                  _       _           _         _                  _
+                                                                      | \ | |     | |                ( )     | |         | |       | |                | |
+                                                                      |  \| | __ _| |_ _   _ _ __ ___|/ ___  | | __ _ ___| |_   ___| |_ __ _ _ __   __| |
+                                                                      | . ` |/ _` | __| | | | '__/ _ \ / __| | |/ _` / __| __| / __| __/ _` | '_ \ / _` |
+                                                                      | |\  | (_| | |_| |_| | | |  __/ \__ \ | | (_| \__ \ |_  \__ \ || (_| | | | | (_| |
+                                                                      |_| \_|\__,_|\__|\__,_|_|  \___| |___/ |_|\__,_|___/\__| |___/\__\__,_|_| |_|\__,_|
+                                                                                                                  
+                             """;
         Console.Write(title);
     }
 
@@ -231,7 +235,7 @@ public class ScreenManager
         Console.Write("└" + new string('─', _conversationBoxWidth - 2) + "┘");
     }
     
-    private void DisplayMapBox(string name, Location? left, Location? right, Location? up, Location? down)
+    private void DisplayMapBox(Location? left, Location? right, Location? up, Location? down)
     {
         Console.SetCursorPosition(_mapBoxLeft, _mapBoxTop);
         Console.Write("┌" + new string('─', _mapBoxWidth - 2) + "┐");
@@ -259,23 +263,42 @@ public class ScreenManager
             {
                 Console.Write("│" + new string(' ', _mapBoxWidth - 2) + "│");
             }
-            else if (i == 6)
+            else if (i == 6 && up != null)
             {
                 Console.Write("|" + CenterTextInString($"[ ]", _mapBoxWidth - 2) + "│");
             }
-            else if (i == 7)
+            else if (i == 7 && up != null)
             {
                 Console.Write("│" + CenterTextInString($"\u2191", _mapBoxWidth - 2) + "│");
             }
             else if (i == 8)
             {
-                Console.Write("│" + CenterTextInString($"[ ] \u2190  [X]  \u2192 [ ]", _mapBoxWidth - 2) + "│");
+                var mapString = "";
+                if (left != null)
+                {
+                    mapString += "[ ] \u2190  ";
+                }
+                else
+                {
+                    mapString += "       ";
+                }
+
+                mapString += "[X]";
+                if (right != null)
+                {
+                    mapString += "  \u2192 [ ]";
+                }
+                else
+                {
+                    mapString += "       ";
+                }
+                Console.Write("│" + CenterTextInString(mapString, _mapBoxWidth - 2) + "│");
             }
-            else if (i == 9)
+            else if (i == 9 && down != null)
             {
                 Console.Write("│" + CenterTextInString($"\u2193", _mapBoxWidth - 2) + "│");
             }
-            else if (i == 10)
+            else if (i == 10 && down != null)
             {
                 Console.Write("|" + CenterTextInString($"[ ]", _mapBoxWidth - 2) + "│");
             }
