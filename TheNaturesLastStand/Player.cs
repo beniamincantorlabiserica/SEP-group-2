@@ -29,8 +29,24 @@ public class Player
         {
             if (CurrentLocation.RightLocation != null)
             {
-                CurrentLocation = CurrentLocation.RightLocation;
-                UpdateScreen(LocationSwitchMessage());
+                if (CurrentLocation.RightLocation.Biome.Name != CurrentLocation.Biome.Name)
+                {
+                    if (CurrentLocation.RightLocation.Biome.MinimumMoneyThreshold < Balance)
+                    {
+                        CurrentLocation = CurrentLocation.RightLocation;
+                        UpdateScreen(LocationSwitchMessage());
+                    }
+                    else
+                    {
+                        UpdateScreen("Uhh, seems like you need more money to pass to a new biome. Try completing more quests.");
+                    }
+                }
+                else
+                {
+                    CurrentLocation = CurrentLocation.RightLocation;
+                    UpdateScreen(LocationSwitchMessage());
+                }
+                
             }
             else
             {
@@ -41,8 +57,23 @@ public class Player
         {
             if (CurrentLocation.LeftLocation != null)
             {
-                CurrentLocation = CurrentLocation.LeftLocation;
-                UpdateScreen(LocationSwitchMessage());
+                if (CurrentLocation.LeftLocation.Biome.Name != CurrentLocation.Biome.Name)
+                {
+                    if (CurrentLocation.LeftLocation.Biome.MinimumMoneyThreshold < Balance)
+                    {
+                        CurrentLocation = CurrentLocation.LeftLocation;
+                        UpdateScreen(LocationSwitchMessage());
+                    }
+                    else
+                    {
+                        UpdateScreen("Uhh, seems like you need more money to pass to a new biome. Try completing more quests.");
+                    }
+                }
+                else
+                {
+                    CurrentLocation = CurrentLocation.LeftLocation;
+                    UpdateScreen(LocationSwitchMessage());
+                }
             }
             else
             {
@@ -53,8 +84,23 @@ public class Player
         {
             if (CurrentLocation.UpLocation != null)
             {
-                CurrentLocation = CurrentLocation.UpLocation;
-                UpdateScreen(LocationSwitchMessage());
+                if (CurrentLocation.UpLocation.Biome.Name != CurrentLocation.Biome.Name)
+                {
+                    if (CurrentLocation.UpLocation.Biome.MinimumMoneyThreshold < Balance)
+                    {
+                        CurrentLocation = CurrentLocation.UpLocation;
+                        UpdateScreen(LocationSwitchMessage());
+                    }
+                    else
+                    {
+                        UpdateScreen("Uhh, seems like you need more money to pass to a new biome. Try completing more quests.");
+                    }
+                }
+                else
+                {
+                    CurrentLocation = CurrentLocation.UpLocation;
+                    UpdateScreen(LocationSwitchMessage());
+                }
             }
             else
             {
@@ -65,8 +111,23 @@ public class Player
         {
             if (CurrentLocation.DownLocation != null)
             {
-                CurrentLocation = CurrentLocation.DownLocation;
-                UpdateScreen(LocationSwitchMessage());
+                if (CurrentLocation.DownLocation.Biome.Name != CurrentLocation.Biome.Name)
+                {
+                    if (CurrentLocation.DownLocation.Biome.MinimumMoneyThreshold < Balance)
+                    {
+                        CurrentLocation = CurrentLocation.DownLocation;
+                        UpdateScreen(LocationSwitchMessage());
+                    }
+                    else
+                    {
+                        UpdateScreen("Uhh, seems like you need more money to pass to a new biome. Try completing more quests.");
+                    }
+                }
+                else
+                {
+                    CurrentLocation = CurrentLocation.DownLocation;
+                    UpdateScreen(LocationSwitchMessage());
+                }
             }
             else
             {
@@ -106,10 +167,18 @@ public class Player
         }
         else if (Command == CurrentLocation.Quest.PositiveCommand)
         {
-            CurrentLocation.Quest.State = QuestState.Done;
-            Balance += CurrentLocation.Quest.RewardAmount;
-            ActiveQuests.Remove(CurrentLocation.Quest);
-            UpdateScreen(CurrentLocation.Quest.Dialog[2]);
+            if (CurrentLocation.Quest.State != QuestState.Done)
+            {
+                CurrentLocation.Quest.State = QuestState.Done;
+                Balance += CurrentLocation.Quest.RewardAmount;
+                ActiveQuests.Remove(CurrentLocation.Quest);
+                UpdateScreen(CurrentLocation.Quest.Dialog[2]);
+            }
+            else
+            {
+                InvalidCommand();
+            }
+
         }
         else if (Command == CurrentLocation.Quest.NegativeCommand)
         {
@@ -117,7 +186,9 @@ public class Player
         }
         else if (Command == "tutorial")
         {
-            ScreenManager.DisplayTutorial();
+            UpdateScreen( 
+                         "Welcome to Natures' Last Stand console game.\nAs you might know, our planet is suffering because we don't take care of it as we should.\nBut no worries, you've came to our help and we are ready to save mother nature with your help.\nEverytime you move around the island you'll find new quests, once completing them you'll get a reward helping you advancing to new biomes!\n\nTry using \"help\" to get aquinted with the game's commands"
+                         );
         }
         else if (Command == "look")
         {
@@ -181,7 +252,9 @@ public class Player
         }
         else if (Command == "help")
         {
-            ScreenManager.DisplayHelp();
+            UpdateScreen(
+                "I am your helping deer, and I am ready to help. Here's an overview on what actions you could do:\n>move right/up/down/left - let's you move to the specified location\n>look - with this command you are looking around to check stuff\n>talk - let's you talk with NPCs in the current location\n>accept - will accept a quest and add it in your active quest list\n>decline - will decline a quest\n\nWhen you want to complete a quest use the provided commands to complete or not the quest.\n\nGood luck adventurer\nI will be always available to you, just call me with a simple \"help\""
+                );
         }
         else if (Command == "quit")
         {
@@ -212,7 +285,34 @@ public class Player
         {
             activeQuestsStringList.Add(quest.Name);
         }
+
+        
+       //TODO 
+       // send the available exits list to screen manager
         ScreenManager.UpdateScreen(Balance, activeQuestsStringList, CurrentLocation.Biome.Name, CurrentLocation.Name, message);
+    }
+
+    private List<string> GetAvailableExits()
+    {
+        List<string> availableExits = new List<string>();
+        if (CurrentLocation.UpLocation != null)
+        {
+            availableExits.Add(">up");
+        }
+        if (CurrentLocation.DownLocation != null)
+        {
+            availableExits.Add(">down");
+        }
+        if (CurrentLocation.RightLocation != null)
+        {
+            availableExits.Add(">right");
+        }
+        if (CurrentLocation.LeftLocation != null)
+        {
+            availableExits.Add(">left");
+        }
+
+        return availableExits;
     }
     
 }
