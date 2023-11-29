@@ -29,8 +29,24 @@ public class Player
         {
             if (CurrentLocation.RightLocation != null)
             {
-                CurrentLocation = CurrentLocation.RightLocation;
-                UpdateScreen(LocationSwitchMessage());
+                if (CurrentLocation.RightLocation.Biome.Name != CurrentLocation.Biome.Name)
+                {
+                    if (CurrentLocation.RightLocation.Biome.MinimumMoneyThreshold < Balance)
+                    {
+                        CurrentLocation = CurrentLocation.RightLocation;
+                        UpdateScreen(LocationSwitchMessage());
+                    }
+                    else
+                    {
+                        UpdateScreen("Uhh, seems like you need more money to pass to a new biome. Try completing more quests.");
+                    }
+                }
+                else
+                {
+                    CurrentLocation = CurrentLocation.RightLocation;
+                    UpdateScreen(LocationSwitchMessage());
+                }
+                
             }
             else
             {
@@ -41,8 +57,23 @@ public class Player
         {
             if (CurrentLocation.LeftLocation != null)
             {
-                CurrentLocation = CurrentLocation.LeftLocation;
-                UpdateScreen(LocationSwitchMessage());
+                if (CurrentLocation.LeftLocation.Biome.Name != CurrentLocation.Biome.Name)
+                {
+                    if (CurrentLocation.LeftLocation.Biome.MinimumMoneyThreshold < Balance)
+                    {
+                        CurrentLocation = CurrentLocation.LeftLocation;
+                        UpdateScreen(LocationSwitchMessage());
+                    }
+                    else
+                    {
+                        UpdateScreen("Uhh, seems like you need more money to pass to a new biome. Try completing more quests.");
+                    }
+                }
+                else
+                {
+                    CurrentLocation = CurrentLocation.LeftLocation;
+                    UpdateScreen(LocationSwitchMessage());
+                }
             }
             else
             {
@@ -53,8 +84,23 @@ public class Player
         {
             if (CurrentLocation.UpLocation != null)
             {
-                CurrentLocation = CurrentLocation.UpLocation;
-                UpdateScreen(LocationSwitchMessage());
+                if (CurrentLocation.UpLocation.Biome.Name != CurrentLocation.Biome.Name)
+                {
+                    if (CurrentLocation.UpLocation.Biome.MinimumMoneyThreshold < Balance)
+                    {
+                        CurrentLocation = CurrentLocation.UpLocation;
+                        UpdateScreen(LocationSwitchMessage());
+                    }
+                    else
+                    {
+                        UpdateScreen("Uhh, seems like you need more money to pass to a new biome. Try completing more quests.");
+                    }
+                }
+                else
+                {
+                    CurrentLocation = CurrentLocation.UpLocation;
+                    UpdateScreen(LocationSwitchMessage());
+                }
             }
             else
             {
@@ -65,8 +111,23 @@ public class Player
         {
             if (CurrentLocation.DownLocation != null)
             {
-                CurrentLocation = CurrentLocation.DownLocation;
-                UpdateScreen(LocationSwitchMessage());
+                if (CurrentLocation.DownLocation.Biome.Name != CurrentLocation.Biome.Name)
+                {
+                    if (CurrentLocation.DownLocation.Biome.MinimumMoneyThreshold < Balance)
+                    {
+                        CurrentLocation = CurrentLocation.DownLocation;
+                        UpdateScreen(LocationSwitchMessage());
+                    }
+                    else
+                    {
+                        UpdateScreen("Uhh, seems like you need more money to pass to a new biome. Try completing more quests.");
+                    }
+                }
+                else
+                {
+                    CurrentLocation = CurrentLocation.DownLocation;
+                    UpdateScreen(LocationSwitchMessage());
+                }
             }
             else
             {
