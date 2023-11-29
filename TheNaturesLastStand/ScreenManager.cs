@@ -15,6 +15,11 @@ public class ScreenManager
     private int _conversationBoxHeight;
     private int _conversationBoxTop;
     private int _conversationBoxLeft;
+    
+    private int _mapBoxWidth;
+    private int _mapBoxHeight;
+    private int _mapBoxTop;
+    private int _mapBoxLeft;
 
     public ScreenManager()
     {
@@ -40,14 +45,20 @@ public class ScreenManager
         _conversationBoxHeight = _stateBoxHeight;
         _conversationBoxLeft = _inputBoxLeft + _stateBoxWidth + 2;
         _conversationBoxTop = _stateBoxTop;
-        UpdateScreen(0, new List<string>(), "", "", "");
+        
+        _mapBoxWidth = 24;
+        _mapBoxHeight = 14;
+        _mapBoxLeft = _conversationBoxLeft + _conversationBoxWidth + 2;
+        _mapBoxTop = _stateBoxTop;
+        UpdateScreen(0, new List<string>(), "", new Location(0, "", "", null), "", 0);
 
     }
 
-    public void UpdateScreen(int balance, List<string> quests, string biome, string location, string message)
+    public void UpdateScreen(int balance, List<string> quests, string biome, Location location, string message, double progress)
     {
         DisplayStatusBox(balance, quests);
-        DisplayConversationBox(biome, location, message);
+        DisplayConversationBox(biome, location.Name, message, progress);
+        DisplayMapBox("Gigolo", null, null, null, null);
         DisplayInputBox();
         SetCursorToInsideInputBox();
     }
@@ -80,40 +91,6 @@ public class ScreenManager
     public void DisplayTutorial()
     {
         // TODO
-    }
-
-    public void DisplayExampleData()
-    {
-        Thread.Sleep(1000);
-        List<string> exampleQuestData = new List<string>();
-        exampleQuestData.Add("Costel");
-        UpdateScreen(150, exampleQuestData, "No Biome", "No Location", "No Message");
-        
-        Thread.Sleep(1000);
-        exampleQuestData = new List<string>();
-        exampleQuestData.Add("Costel");
-        exampleQuestData.Add("Adi");
-        exampleQuestData.Add("Ion");
-        exampleQuestData.Add("Ghita");
-        exampleQuestData.Add("Pavel");
-        exampleQuestData.Add("Costelus");
-        exampleQuestData.Add("Costelus");
-        exampleQuestData.Add("Costelus");
-        exampleQuestData.Add("Costelus");
-        exampleQuestData.Add("Costelus");
-        exampleQuestData.Add("Costelus");
-        exampleQuestData.Add("Costelus");
-        exampleQuestData.Add("Costelus");
-        exampleQuestData.Add("Costelus");
-        exampleQuestData.Add("Costelus");
-        exampleQuestData.Add("Costelus");
-        exampleQuestData.Add("Costelus");
-        exampleQuestData.Add("Costelus");
-        exampleQuestData.Add("Costelus");
-        exampleQuestData.Add("Costelus");
-        exampleQuestData.Add("Costelus");
-        UpdateScreen(77777, exampleQuestData, "Biome of the great", "Constanta Tropez, Marea Neagra", "Un mesaj foarte lung facut special ca sa vedem daca se taie la final de rand, sa fim siguri ca nu iese din peisaj sau ceva");
-
     }
 
     private void DisplayTitle()
@@ -201,7 +178,7 @@ public class ScreenManager
         Console.Write("└" + new string('─', _stateBoxWidth - 2) + "┘");
     }
 
-    private void DisplayConversationBox(string biome, string location, string conversation)
+    private void DisplayConversationBox(string biome, string location, string conversation, double progress)
     {
         Console.SetCursorPosition(_conversationBoxLeft, _conversationBoxTop);
         Console.Write("┌" + new string('─', _conversationBoxWidth - 2) + "┐");
@@ -211,11 +188,15 @@ public class ScreenManager
             Console.SetCursorPosition(_conversationBoxLeft, _conversationBoxTop + i);
             if (i == 1)
             {
-                Console.Write("│" + CenterTextInString($"Biome: {biome}", 100 - 2) + "│");
+                Console.Write("│" + CenterTextInString($"{biome}", _conversationBoxWidth - 2) + "│");
+            } 
+            else if (i == 2)
+            {
+                Console.Write("│" + CenterTextInString($"{location}", _conversationBoxWidth - 2) + "│");
             } 
             else if (i == 3)
             {
-                Console.Write("│" + CenterTextInString($"Location: {location}", 100 - 2) + "│");
+                Console.Write("│" + CenterTextInString($"Progress {progress}%", _conversationBoxWidth - 2) + "│");
             }
             else if (i == 4)
             {
@@ -248,6 +229,64 @@ public class ScreenManager
 
         Console.SetCursorPosition(_conversationBoxLeft, _conversationBoxTop + _conversationBoxHeight - 1);
         Console.Write("└" + new string('─', _conversationBoxWidth - 2) + "┘");
+    }
+    
+    private void DisplayMapBox(string name, Location? left, Location? right, Location? up, Location? down)
+    {
+        Console.SetCursorPosition(_mapBoxLeft, _mapBoxTop);
+        Console.Write("┌" + new string('─', _mapBoxWidth - 2) + "┐");
+
+        for (int i = 1; i < _mapBoxHeight - 1; i++)
+        {
+            Console.SetCursorPosition(_mapBoxLeft, _mapBoxTop + i);
+            if (i == 1)
+            {
+                Console.Write("│" + new string(' ', _mapBoxWidth - 2) + "│");
+            }
+            else if (i == 2)
+            {
+                Console.Write("│" + CenterTextInString($"MAP", _mapBoxWidth - 2) + "│");
+            }
+            else if (i == 3)
+            {
+                Console.Write("│" + new string(' ', _mapBoxWidth - 2) + "│");
+            }
+            else if (i == 4)
+            {
+                Console.Write("│" + new string('─', _mapBoxWidth - 2) + "│");
+            }
+            else if (i == 5)
+            {
+                Console.Write("│" + new string(' ', _mapBoxWidth - 2) + "│");
+            }
+            else if (i == 6)
+            {
+                Console.Write("|" + CenterTextInString($"[ ]", _mapBoxWidth - 2) + "│");
+            }
+            else if (i == 7)
+            {
+                Console.Write("│" + CenterTextInString($"\u2191", _mapBoxWidth - 2) + "│");
+            }
+            else if (i == 8)
+            {
+                Console.Write("│" + CenterTextInString($"[ ] \u2190  [X]  \u2192 [ ]", _mapBoxWidth - 2) + "│");
+            }
+            else if (i == 9)
+            {
+                Console.Write("│" + CenterTextInString($"\u2193", _mapBoxWidth - 2) + "│");
+            }
+            else if (i == 10)
+            {
+                Console.Write("|" + CenterTextInString($"[ ]", _mapBoxWidth - 2) + "│");
+            }
+            else
+            {
+                Console.Write("│" + new string(' ', _mapBoxWidth - 2) + "│");
+            }
+        }
+
+        Console.SetCursorPosition(_mapBoxLeft, _mapBoxTop + _mapBoxHeight - 1);
+        Console.Write("└" + new string('─', _mapBoxWidth - 2) + "┘");
     }
 
     private void SetCursorToInsideInputBox()
