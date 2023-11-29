@@ -183,7 +183,7 @@ public class Player
                 {
                     CurrentLocation.Quest.State = QuestState.Active;
                     ActiveQuests.Add(CurrentLocation.Quest);
-                    UpdateScreen("You accepted this quest, to do something about it, try looking again...");
+                    UpdateScreen("You accepted this quest, ask what should you do by using \"talk\" command");
                 }
                 else
                 {
