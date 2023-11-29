@@ -167,10 +167,18 @@ public class Player
         }
         else if (Command == CurrentLocation.Quest.PositiveCommand)
         {
-            CurrentLocation.Quest.State = QuestState.Done;
-            Balance += CurrentLocation.Quest.RewardAmount;
-            ActiveQuests.Remove(CurrentLocation.Quest);
-            UpdateScreen(CurrentLocation.Quest.Dialog[2]);
+            if (CurrentLocation.Quest.State != QuestState.Done)
+            {
+                CurrentLocation.Quest.State = QuestState.Done;
+                Balance += CurrentLocation.Quest.RewardAmount;
+                ActiveQuests.Remove(CurrentLocation.Quest);
+                UpdateScreen(CurrentLocation.Quest.Dialog[2]);
+            }
+            else
+            {
+                InvalidCommand();
+            }
+
         }
         else if (Command == CurrentLocation.Quest.NegativeCommand)
         {
