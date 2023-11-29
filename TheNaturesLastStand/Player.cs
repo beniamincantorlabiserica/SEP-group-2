@@ -15,6 +15,7 @@ public class Player
     private int QuestCount;
     private int BiomeCount;
     private double Progress;
+    private bool seeingHelp = false;
     
     
 
@@ -183,7 +184,7 @@ public class Player
                 {
                     CurrentLocation.Quest.State = QuestState.Active;
                     ActiveQuests.Add(CurrentLocation.Quest);
-                    UpdateScreen("You accepted this quest, ask what should you do by using \"talk\" command");
+                    UpdateScreen("You accepted this quest, to do something about it, try looking again...");
                 }
                 else
                 {
@@ -294,9 +295,15 @@ public class Player
         }
         else if (Command == "help")
         {
+            seeingHelp = true;
             UpdateScreen(
                 "I am your helping deer, and I am ready to help. Here's an overview on what actions you could do:\n>move right/up/down/left - let's you move to the specified location\n>look - with this command you are looking around to check stuff\n>talk - let's you talk with NPCs in the current location\n>accept - will accept a quest and add it in your active quest list\n>decline - will decline a quest\n\nWhen you want to complete a quest use the provided commands to complete or not the quest.\n\nGood luck adventurer\nI will be always available to you, just call me with a simple \"help\""
                 );
+        }
+        else if (Command == "ok" && seeingHelp == true)
+        {
+                seeingHelp = false;
+                UpdateScreen("");
         }
         else if (Command == "quit")
         {
