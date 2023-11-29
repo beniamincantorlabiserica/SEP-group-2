@@ -68,18 +68,18 @@ public class ScreenManager
         return Console.ReadLine() ?? "";
     }
 
-    public void DisplayGameOver()
+    public void DisplayGameOver(double progress)
     {
-        const string gameOverString = """
-                                        ________                        ________
-                                       /  _____/_____    _____   ____   \_____  \___  __ ___________
-                                      /   \  ___\__  \  /     \_/ __ \   /   |   \  \/ // __ \_  __ \
-                                      \    \_\  \/ __ \|  Y Y  \  ___/  /    |    \   /\  ___/|  | \/
-                                       \______  (____  /__|_|  /\___  > \_______  /\_/  \___  >__|
-                                              \/     \/      \/     \/          \/          \/
-                                                                                                     
-                                                          Thank you for playing!
-                                      """;
+        var gameOverString = $"""
+                                                                ________                        ________
+                                                               /  _____/_____    _____   ____   \_____  \___  __ ___________
+                                                              /   \  ___\__  \  /     \_/ __ \   /   |   \  \/ // __ \_  __ \
+                                                              \    \_\  \/ __ \|  Y Y  \  ___/  /    |    \   /\  ___/|  | \/
+                                                               \______  (____  /__|_|  /\___  > \_______  /\_/  \___  >__|
+                                                                      \/     \/      \/     \/          \/          \/
+                                                                                                                             
+                                                                          Thank you for playing! Progress {progress}%
+                              """;
         Console.Clear();
         Console.Write(gameOverString);
     }
