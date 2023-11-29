@@ -84,16 +84,6 @@ public class ScreenManager
         Console.Write(gameOverString);
     }
 
-    public void DisplayHelp()
-    {
-        //TODO
-    }
-
-    public void DisplayTutorial()
-    {
-        // TODO
-    }
-
     private void DisplayTitle()
     {
         const string title = """

@@ -43,6 +43,9 @@ public class Player
         (LocationCount, QuestCount) = ContentProvider.GetMaxProgressState();
         BiomeCount = 5;
         Progress = 0;
+        UpdateScreen( 
+            "Welcome to Natures' Last Stand console game.\nAs you might know, our planet is suffering because we don't take care of it as we should.\nBut no worries, you've came to our help and we are ready to save mother nature with your help.\nEverytime you move around the island you'll find new quests, once completing them you'll get a reward helping you advancing to new biomes!\n\nTry using \"help\" to get aquinted with the game's commands"
+        );
     }
 
     /// <summary>
