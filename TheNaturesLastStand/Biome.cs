@@ -7,15 +7,12 @@ public class Biome
     public List<Location> LocationsList { get; set; }
     public int MinimumMoneyThreshold { get; set; }
 
-    public Biome(string name, string description, int minimumMoneyThreshold, List<Location> locations)
+    public Biome(string name, string description, int minimumMoneyThreshold)
     {
         Name = name;
         Description = description;
-        LocationsList = locations;
-        foreach (var location in locations)
-        {
-            location.Biome = this;
-        }
         MinimumMoneyThreshold = minimumMoneyThreshold;
+        LocationsList = new List<Location>();
     }
+
 }
