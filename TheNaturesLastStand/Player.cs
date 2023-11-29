@@ -18,11 +18,18 @@ public class Player
     
     
 
+    /// <summary>
+    /// Constructor for Player class initializing the ScreenManager with the passed argument
+    /// </summary>
+    /// <param name="ScreenManager">ScreenManager reference passed from initializng class</param>
     public Player(ScreenManager ScreenManager)
     {
         this.ScreenManager = ScreenManager;  
     }
 
+    /// <summary>
+    /// Initialize the variables needed in the class for performing logic
+    /// </summary>
     public void Init()
     {
         ContentProvider = new ContentProvider();
@@ -38,6 +45,10 @@ public class Player
         Progress = 0;
     }
 
+    /// <summary>
+    /// The function takes a command as a string and perform different activities dependent on the command
+    /// </summary>
+    /// <param name="Command">string entered by the user indicating what the game should do</param>
     public void DoCommand(string Command)
     {
         if (Command == "move right")
@@ -51,7 +62,7 @@ public class Player
                         SeenLocations.Add(CurrentLocation.RightLocation);
                         SeenBiome.Add(CurrentLocation.RightLocation.Biome);
                         CurrentLocation = CurrentLocation.RightLocation;
-                        UpdateScreen(LocationSwitchMessage());
+                        UpdateScreen(LocationSwitchMessage(1));
                     }
                     else
                     {
@@ -62,7 +73,7 @@ public class Player
                 {
                     SeenLocations.Add(CurrentLocation.RightLocation);
                     CurrentLocation = CurrentLocation.RightLocation;
-                    UpdateScreen(LocationSwitchMessage());
+                    UpdateScreen(LocationSwitchMessage(0));
                 }
                 
             }
@@ -82,7 +93,7 @@ public class Player
                         SeenLocations.Add(CurrentLocation.LeftLocation);
                         SeenBiome.Add(CurrentLocation.LeftLocation.Biome);
                         CurrentLocation = CurrentLocation.LeftLocation;
-                        UpdateScreen(LocationSwitchMessage());
+                        UpdateScreen(LocationSwitchMessage(1));
                     }
                     else
                     {
@@ -93,7 +104,7 @@ public class Player
                 {
                     SeenLocations.Add(CurrentLocation.LeftLocation);
                     CurrentLocation = CurrentLocation.LeftLocation;
-                    UpdateScreen(LocationSwitchMessage());
+                    UpdateScreen(LocationSwitchMessage(0));
                 }
             }
             else
@@ -112,7 +123,7 @@ public class Player
                         SeenLocations.Add(CurrentLocation.UpLocation);
                         SeenBiome.Add(CurrentLocation.UpLocation.Biome);
                         CurrentLocation = CurrentLocation.UpLocation;
-                        UpdateScreen(LocationSwitchMessage());
+                        UpdateScreen(LocationSwitchMessage(1));
                     }
                     else
                     {
@@ -123,7 +134,7 @@ public class Player
                 {
                     SeenLocations.Add(CurrentLocation.UpLocation);
                     CurrentLocation = CurrentLocation.UpLocation;
-                    UpdateScreen(LocationSwitchMessage());
+                    UpdateScreen(LocationSwitchMessage(0));
                 }
             }
             else
@@ -142,7 +153,7 @@ public class Player
                         SeenLocations.Add(CurrentLocation.DownLocation);
                         SeenBiome.Add(CurrentLocation.DownLocation.Biome);
                         CurrentLocation = CurrentLocation.DownLocation;
-                        UpdateScreen(LocationSwitchMessage());
+                        UpdateScreen(LocationSwitchMessage(1));
                     }
                     else
                     {
@@ -153,7 +164,7 @@ public class Player
                 {
                     SeenLocations.Add(CurrentLocation.DownLocation);
                     CurrentLocation = CurrentLocation.DownLocation;
-                    UpdateScreen(LocationSwitchMessage());
+                    UpdateScreen(LocationSwitchMessage(0));
                 }
             }
             else
@@ -296,16 +307,35 @@ public class Player
 
     // TO-DO
     // check when changing biome to add biome description otherwise add only location description
-    private string LocationSwitchMessage()
+    /// <summary>
+    /// 
+    /// </summary>
+    /// <returns>Current's location description and biome description when needed </returns>
+    private string LocationSwitchMessage(int changingBiome)
     {
-        return CurrentLocation.Description;
+        if (changingBiome == 1)
+        {
+            return CurrentLocation.Biome.Description + " " + CurrentLocation.Description;
+        }
+        else
+        {
+            return CurrentLocation.Description;
+        }
+        
     }
 
+    /// <summary>
+    /// Updates the screen with an invalid command
+    /// </summary>
     private void InvalidCommand()
     {
         UpdateScreen("Invalid Command");
     }
 
+    /// <summary>
+    /// Updates the screen with all the data needed and the message sent when calling the function
+    /// </summary>
+    /// <param name="message">string that the function is called with that will be displayed on the screen</param>
     private void UpdateScreen(string message)
     {
         List<string> activeQuestsStringList = new List<string>();
@@ -318,29 +348,11 @@ public class Player
         ScreenManager.UpdateScreen(Balance, activeQuestsStringList, CurrentLocation.Biome.Name, CurrentLocation, message, Progress);
     }
 
-    private List<string> GetAvailableExits()
-    {
-        List<string> availableExits = new List<string>();
-        if (CurrentLocation.UpLocation != null)
-        {
-            availableExits.Add(">up");
-        }
-        if (CurrentLocation.DownLocation != null)
-        {
-            availableExits.Add(">down");
-        }
-        if (CurrentLocation.RightLocation != null)
-        {
-            availableExits.Add(">right");
-        }
-        if (CurrentLocation.LeftLocation != null)
-        {
-            availableExits.Add(">left");
-        }
-
-        return availableExits;
-    }
-
+    /// <summary>
+    /// Calculates current progress
+    /// scorePerTask is calculating how much percentage is every quest/location/biome worth
+    /// The progress is calculates using total quests/locations/biome discovered/completed by the user multiplied by scorePerTask
+    /// </summary>
     private void CalculateProgress()
     {
         double scorePerTask = 100 / (BiomeCount + LocationCount + QuestCount);
