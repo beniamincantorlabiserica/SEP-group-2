@@ -117,7 +117,9 @@ public class Player
         }
         else if (Command == "tutorial")
         {
-            ScreenManager.DisplayTutorial();
+            UpdateScreen( 
+                         "Welcome to Natures' Last Stand console game.\nAs you might know, our planet is suffering because we don't take care of it as we should.\nBut no worries, you've came to our help and we are ready to save mother nature with your help.\nEverytime you move around the island you'll find new quests, once completing them you'll get a reward helping you advancing to new biomes!\n\nTry using \"help\" to get aquinted with the game's commands"
+                         );
         }
         else if (Command == "look")
         {
@@ -181,7 +183,9 @@ public class Player
         }
         else if (Command == "help")
         {
-            ScreenManager.DisplayHelp();
+            UpdateScreen(
+                "I am your helping deer, and I am ready to help. Here's an overview on what actions you could do:\n>move right/up/down/left - let's you move to the specified location\n>look - with this command you are looking around to check stuff\n>talk - let's you talk with NPCs in the current location\n>accept - will accept a quest and add it in your active quest list\n>decline - will decline a quest\n\nWhen you want to complete a quest use the provided commands to complete or not the quest.\n\nGood luck adventurer\nI will be always available to you, just call me with a simple \"help\""
+                );
         }
         else if (Command == "quit")
         {
@@ -212,7 +216,34 @@ public class Player
         {
             activeQuestsStringList.Add(quest.Name);
         }
+
+        
+       //TODO 
+       // send the available exits list to screen manager
         ScreenManager.UpdateScreen(Balance, activeQuestsStringList, CurrentLocation.Biome.Name, CurrentLocation.Name, message);
+    }
+
+    private List<string> GetAvailableExits()
+    {
+        List<string> availableExits = new List<string>();
+        if (CurrentLocation.UpLocation != null)
+        {
+            availableExits.Add(">up");
+        }
+        if (CurrentLocation.DownLocation != null)
+        {
+            availableExits.Add(">down");
+        }
+        if (CurrentLocation.RightLocation != null)
+        {
+            availableExits.Add(">right");
+        }
+        if (CurrentLocation.LeftLocation != null)
+        {
+            availableExits.Add(">left");
+        }
+
+        return availableExits;
     }
     
 }
