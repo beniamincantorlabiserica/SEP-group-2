@@ -306,8 +306,6 @@ public class Player
         }
     }
 
-    // TO-DO
-    // check when changing biome to add biome description otherwise add only location description
     /// <summary>
     /// 
     /// </summary>
@@ -318,11 +316,7 @@ public class Player
         {
             return CurrentLocation.Biome.Description + " " + CurrentLocation.Description;
         }
-        else
-        {
-            return CurrentLocation.Description;
-        }
-        
+        return CurrentLocation.Description;
     }
 
     /// <summary>
