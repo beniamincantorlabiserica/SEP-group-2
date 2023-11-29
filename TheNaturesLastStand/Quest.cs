@@ -5,6 +5,7 @@ public class Quest
 {
     public QuestState State { get; set; }
     public QuestType Type { get; set; }
+    public int BiomeId { get; set; }
     public string Name { get; set; }
     public string Description { get; set; }
     public int RewardAmount { get; set; }
@@ -12,7 +13,7 @@ public class Quest
     public string PositiveCommand { get; set; }
     public string NegativeCommand { get; set; }
 
-    public Quest(string positiveCommand, string negativeCommand, string[] dialog, int rewardAmount, string name, string description, QuestType type = QuestType.Regular)
+    public Quest(string positiveCommand, string negativeCommand, string[] dialog, int rewardAmount, string name, string description, int biomeId, QuestType type = QuestType.Regular)
     {
         PositiveCommand = positiveCommand;
         NegativeCommand = negativeCommand;
@@ -22,11 +23,7 @@ public class Quest
         Description = description;
         Type = type;
         State = QuestState.NotSeen;
-    }
-
-    public Quest(QuestState state)
-    {
-        State = state;
+        BiomeId = biomeId;
     }
 }
 
