@@ -297,7 +297,8 @@ public class Player
         }
         else if (Command == "quit")
         {
-            ScreenManager.DisplayGameOver();
+            CalculateProgress();
+            ScreenManager.DisplayGameOver(Progress);
         }
         else
         {
