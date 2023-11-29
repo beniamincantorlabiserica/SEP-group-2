@@ -211,6 +211,11 @@ public class ContentProvider
         return _locations[0];
     }
 
+    public (int, int) GetMaxProgressState()
+    {
+        return (_locations.Count, _quests.Count);
+    }
+
     private void GenerateQuests()
     {
         using var reader = new StreamReader("../../../data/quests.csv");
