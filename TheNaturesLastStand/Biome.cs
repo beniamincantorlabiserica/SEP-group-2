@@ -1,30 +1,24 @@
-using System.Security.Cryptography.X509Certificates;
+namespace TheNaturesLastStand;
 
-namespace TheNaturesLastStand
+public class Biome
 {
-    public class Biome
+    public string Name { get; set; }
+    public string Description { get; set; }
+    public List<Location> LocationsList { get; set; }
+    public int MinimumMoneyThreshold { get; set; }
+
+    /// <summary>
+    /// Constructor of class Biome Initializing the attirbutes
+    /// </summary>
+    /// <param name="name">name of biome</param>
+    /// <param name="description">dsecription of biome</param>
+    /// <param name="minimumMoneyThreshold">the minimum amount of money needed to enter this biome</param>
+    public Biome(string name, string description, int minimumMoneyThreshold)
     {
-
-        public string? name { get; set; }
-        public string? description { get; set; }
-        public int? requiredScore { get; set; }
-        public List<Location> locations {set; get;}
-
-        public Biome(string name, string description, List<Location> locations, int requiredScoreToPass) {
-            this.name = name;
-            this.description = description;
-            this.locations = locations;
-            this.requiredScore = requiredScoreToPass;
-        }
-
-        public bool VerifyScore(int currentScore)
-        {
-            return requiredScore <= currentScore; 
-        }
-
-        public Location GetLocation(string destination) {
-            return locations[1];
-        }
-
+        Name = name;
+        Description = description;
+        MinimumMoneyThreshold = minimumMoneyThreshold;
+        LocationsList = new List<Location>();
     }
+
 }
