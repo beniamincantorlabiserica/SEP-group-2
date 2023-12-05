@@ -218,7 +218,7 @@ public class ContentProvider
 
     private void GenerateQuests()
     {
-        using var reader = new StreamReader("../../../data/quests.csv");
+        using var reader = new StreamReader("./data/quests.csv");
         int readQuest = 0;
         while (!reader.EndOfStream)
         {
@@ -236,9 +236,24 @@ public class ContentProvider
                 continue;
             }
             var values = line.Split('|');
-            string[] dialogs = { values[2], values[3], values[4] };
-            var questType = values[9] == "REGULAR" ? QuestType.Regular : QuestType.NpcQuest;
-            _quests.Add(new Quest(values[0],values[1], dialogs, int.Parse(values[5]), values[6], values[7], int.Parse(values[8]), questType));
+            string[] dialogs = { values[3], values[4], values[5] };
+            QuestType CurrentQuestType;
+            switch(values[10])
+            {
+                case "REGULAR":
+                    CurrentQuestType = QuestType.Regular;
+                    break;
+                case "NPC":
+                    CurrentQuestType = QuestType.NpcQuest;
+                    break;
+                case "ITEM":
+                    CurrentQuestType = QuestType.ItemQuest;
+                    break;
+                default:
+                    CurrentQuestType = QuestType.Regular;
+                    break;
+            }
+            _quests.Add(new Quest(int.Parse(values[0]), values[1], values[2], dialogs, int.Parse(values[6]), values[7], values[8], int.Parse(values[9]), CurrentQuestType));
             readQuest++;
         }
 
@@ -252,7 +267,7 @@ public class ContentProvider
 
     private void GenerateLocations()
     {
-        using var reader = new StreamReader("../../../data/locations.csv");
+        using var reader = new StreamReader("./data/locations.csv");
         var locationIndexCounter = 0;
         while (!reader.EndOfStream)
         {
@@ -279,7 +294,41 @@ public class ContentProvider
         {
             Console.WriteLine("[ERROR] No Locations loaded (are you missing the locations.txt file in the data directory?).");
             Console.WriteLine("\n\n\n");
+        }
 
+        GenerateItems();
+    }
+    private void GenerateItems()
+    {
+        Random rnd = new Random();
+        using (StreamReader reader = new StreamReader("./data/Items.csv"))
+        {
+            while (!reader.EndOfStream) 
+            {
+                string line = reader.ReadLine();
+                string[] arguments = line.Split('|');
+                int index = 0;
+
+                bool Has_Space_For_Item = false;
+
+                foreach (Location location in _locations)
+                {
+                    if (location.Item == null)
+                    {
+                        Has_Space_For_Item = true;
+                    }
+                }
+
+                if(Has_Space_For_Item)
+                {
+                    do
+                    {
+                        index = rnd.Next(0, _locations.Count);
+                    } while (_locations[index].Item != null);
+                }
+
+                _locations[index].Item = new Item(arguments[0], arguments[1], int.Parse(arguments[2]), int.Parse(arguments[3]));
+            }
         }
     }
 

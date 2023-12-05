@@ -9,12 +9,14 @@ public class Location
       Name = name;
       Description = description;
       Biome = biome;
+      Item = null;
    }
 
    public int Id { get; set; }
    public string Name { get; set; }
    public string Description { get; set; }
    public Quest? Quest { get; set; }
+   public Item? Item { get; set; }
    public Location? RightLocation { get; set; }
    public Location? LeftLocation { get; set; }
    public Location? UpLocation { get; set; }

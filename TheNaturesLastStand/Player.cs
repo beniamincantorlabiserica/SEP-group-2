@@ -6,6 +6,7 @@ public class Player
     public Location CurrentLocation { get; set; }
     public List<Quest> ActiveQuests { get; set; }
     public List<Biome> BiomeList { get; set; }
+    public List<Item> Inventory { get; set; }
     public ScreenManager ScreenManager { get; }
     public ContentProvider ContentProvider { get; set; }
     private HashSet<Location> SeenLocations;
@@ -35,6 +36,7 @@ public class Player
     {
         ContentProvider = new ContentProvider();
         ActiveQuests = new List<Quest>();
+        Inventory = new List<Item>();
         SeenQuests = new HashSet<Quest>();
         SeenBiome = new HashSet<Biome>();
         SeenLocations = new HashSet<Location>();
@@ -178,24 +180,42 @@ public class Player
         }
         else if (Command == "accept")
         {
-            if (CurrentLocation.Quest.Type == QuestType.NpcQuest)
+            bool Has_accepted_Quest = false;
+
+            foreach (Quest quest in ActiveQuests)
             {
-                if (CurrentLocation.Quest.State == QuestState.Talking)
+                if(quest.ID == CurrentLocation.Quest.ID)
+                {
+                    Has_accepted_Quest = true;
+                    break;
+                }
+            }
+
+            if (!Has_accepted_Quest)
+            {
+                if (CurrentLocation.Quest.Type == QuestType.NpcQuest)
+                {
+                    if (CurrentLocation.Quest.State == QuestState.Talking)
+                    {
+                        CurrentLocation.Quest.State = QuestState.Active;
+                        ActiveQuests.Add(CurrentLocation.Quest);
+                        UpdateScreen("You accepted this quest, to do something about it, try looking again...");
+                    }
+                    else
+                    {
+                        InvalidCommand();
+                    }
+                }
+                else
                 {
                     CurrentLocation.Quest.State = QuestState.Active;
                     ActiveQuests.Add(CurrentLocation.Quest);
                     UpdateScreen("You accepted this quest, to do something about it, try looking again...");
                 }
-                else
-                {
-                    InvalidCommand();
-                }
             }
             else
             {
-                CurrentLocation.Quest.State = QuestState.Active;
-                ActiveQuests.Add(CurrentLocation.Quest);
-                UpdateScreen("You accepted this quest, to do something about it, try looking again...");
+                UpdateScreen("You have already accepted this quest");
             }
         }
         else if (Command == "decline")
@@ -209,17 +229,49 @@ public class Player
         }
         else if (Command == CurrentLocation.Quest.PositiveCommand)
         {
-            if (CurrentLocation.Quest.State != QuestState.Done)
+            if(CurrentLocation.Quest.Type != QuestType.ItemQuest)
             {
-                CurrentLocation.Quest.State = QuestState.Done;
-                Balance += CurrentLocation.Quest.RewardAmount;
-                ActiveQuests.Remove(CurrentLocation.Quest);
-                SeenQuests.Add(CurrentLocation.Quest);
-                UpdateScreen(CurrentLocation.Quest.Dialog[2]);
+                if (CurrentLocation.Quest.State != QuestState.Done)
+                {
+                    CurrentLocation.Quest.State = QuestState.Done;
+                    Balance += CurrentLocation.Quest.RewardAmount;
+                    ActiveQuests.Remove(CurrentLocation.Quest);
+                    SeenQuests.Add(CurrentLocation.Quest);
+                    UpdateScreen(CurrentLocation.Quest.Dialog[2]);
+                }
+                else
+                {
+                    InvalidCommand();
+                }
             }
             else
             {
-                InvalidCommand();
+                bool matching_item = false;
+                Item matching_item_copy = null;
+
+                foreach (Item item in Inventory)
+                {
+                    if(item.Quest_ID == CurrentLocation.Quest.ID)
+                    {
+                        matching_item_copy = item;
+                        matching_item = true;
+                        break;
+                    }
+                }
+
+                if(matching_item)
+                {
+                    CurrentLocation.Quest.State = QuestState.Done;
+                    Balance += CurrentLocation.Quest.RewardAmount;
+                    ActiveQuests.Remove(CurrentLocation.Quest);
+                    Inventory.Remove(matching_item_copy);
+                    SeenQuests.Add(CurrentLocation.Quest);
+                    UpdateScreen(CurrentLocation.Quest.Dialog[2]);
+                }
+                else
+                {
+                    UpdateScreen("You don't have the required item");
+                }
             }
 
         }
@@ -233,7 +285,7 @@ public class Player
                          "Welcome to Natures' Last Stand console game.\nAs you might know, our planet is suffering because we don't take care of it as we should.\nBut no worries, you've came to our help and we are ready to save mother nature with your help.\nEverytime you move around the island you'll find new quests, once completing them you'll get a reward helping you advancing to new biomes!\n\nTry using \"help\" to get aquinted with the game's commands"
                          );
         }
-        else if (Command == "look")
+        else if (Command == "investigate")
         {
             if (CurrentLocation.Quest.Type == QuestType.NpcQuest)
             {
@@ -248,7 +300,7 @@ public class Player
                         break;
                 }
             }
-            else if (CurrentLocation.Quest.Type == QuestType.Regular)
+            else //if (CurrentLocation.Quest.Type == QuestType.Regular)
             {
                 switch (CurrentLocation.Quest.State)
                 {
@@ -291,6 +343,53 @@ public class Player
                         UpdateScreen("Your help was very welcome. Thank you for fighting for the planet!");
                         break;
                 }
+            }
+        }
+        else if (Command == "pick")
+        {
+            if(CurrentLocation.Item != null)
+            {
+                bool matching_quest = false;
+
+                foreach(Quest quest in ActiveQuests)
+                {
+                    if(quest.ID == CurrentLocation.Item.Quest_ID)
+                    {
+                        matching_quest = true;
+                        break;
+                    }
+                }
+
+                if(matching_quest)
+                {
+                    UpdateScreen(CurrentLocation.Item.Description);
+                    Inventory.Add(CurrentLocation.Item);
+                    CurrentLocation.Item = null;
+                }
+                else
+                {
+                    UpdateScreen("There are no relevent items here.");
+                }
+            }
+            else
+            {
+                UpdateScreen("There are not items here.");
+            }
+        }
+        else if(Command == "inventory")
+        {
+            if(Inventory.Count == 0)
+            {
+                UpdateScreen("You have no items");
+            }
+            else
+            {
+                string output = "";
+                for (int i = 0; i < Inventory.Count; i++)
+                {
+                    output += (i + 1) + ". "+ Inventory[i].Name + '\n';
+                }
+                UpdateScreen(output);
             }
         }
         else if (Command == "help")
