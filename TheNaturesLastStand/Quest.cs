@@ -1,68 +1,43 @@
 
-namespace TheNaturesLastStand
+namespace TheNaturesLastStand;
+
+public class Quest
 {
-    public class Quest
+    public QuestState State { get; set; }
+    public QuestType Type { get; set; }
+    public int BiomeId { get; set; }
+    public string Name { get; set; }
+    public string Description { get; set; }
+    public int RewardAmount { get; set; }
+    public string[] Dialog { get; set; }
+    public string PositiveCommand { get; set; }
+    public string NegativeCommand { get; set; }
+
+    public Quest(string positiveCommand, string negativeCommand, string[] dialog, int rewardAmount, string name, string description, int biomeId, QuestType type = QuestType.Regular)
     {
-        public string name;
-        public string description;
-        public string choiceGood;
-        public string choiceBad;
-        public string? choiceCurrent {set; get;}
-        public bool done {set; get;}
-        public int currentQuestStage;
-        public Quest(string name, string description, string choiceGood, string choiceBad, int currentQuestStage)
-        {
-            this.name = name;
-            this.description = description;
-            this.choiceGood = choiceGood;
-            this.choiceBad = choiceBad;
-            done = false;
-            this.currentQuestStage = currentQuestStage;
-        }
-
-        public bool VerifyChoice(string choiceCurrent)
-        {
-            if (choiceCurrent == this.choiceGood)
-                return true;
-            
-            else if (choiceCurrent == this.choiceBad)
-                return true;
-
-            else
-                return false;
-        }
-
-        public bool IsDone(string choiceCurrent)
-        {
-            if (choiceCurrent == this.choiceGood)
-                return done = true;
-
-            else
-                return done = false;
-        }
-
-        public int QuestStageIncrease()
-        {
-            if (currentQuestStage == 1)
-                return currentQuestStage++;
-            
-            else if (currentQuestStage == 2)
-                return currentQuestStage++;
-
-            else
-                return currentQuestStage;
-        }
-
-        public int QuestStageDecrease()
-        {
-            if (currentQuestStage == 1)
-                return currentQuestStage;
-            
-            else if (currentQuestStage == 2)
-                return currentQuestStage--;
-
-            else
-                return currentQuestStage;
-        }
+        PositiveCommand = positiveCommand;
+        NegativeCommand = negativeCommand;
+        Dialog = dialog;
+        RewardAmount = rewardAmount;
+        Name = name;
+        Description = description;
+        Type = type;
+        State = QuestState.NotSeen;
+        BiomeId = biomeId;
     }
+}
+
+public enum QuestState
+{
+    NotSeen,
+    Seen,
+    Talking,
+    Active,
+    Done
+}
+
+public enum QuestType
+{
+    NpcQuest,
+    Regular
 }
