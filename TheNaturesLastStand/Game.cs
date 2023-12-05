@@ -18,23 +18,23 @@ namespace TheNaturesLastStand
             Player.Init();
             
             
-            // string audioFilePath = @"../../../song.wav";
-            //
-            // try
-            // {
-            //     using (var process = new Process())
-            //     {
-            //         process.StartInfo.FileName = "afplay";
-            //         process.StartInfo.Arguments = audioFilePath;
-            //         process.StartInfo.UseShellExecute = false;
-            //         process.StartInfo.CreateNoWindow = true;
-            //         process.Start();
-            //     }
-            // }
-            // catch (Exception ex)
-            // {
-            //     Console.WriteLine($"Error playing file: {ex.Message}");
-            // }
+            string audioFilePath = @"../../../audio.mp3";
+            
+            try
+            {
+                using (var process = new Process())
+                {
+                    process.StartInfo.FileName = "afplay";
+                    process.StartInfo.Arguments = audioFilePath;
+                    process.StartInfo.UseShellExecute = false;
+                    process.StartInfo.CreateNoWindow = true;
+                    process.Start();
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error playing file: {ex.Message}");
+            }
             
             while(true)
             {
