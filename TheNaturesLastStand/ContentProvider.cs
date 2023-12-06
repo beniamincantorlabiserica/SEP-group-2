@@ -334,10 +334,10 @@ public class ContentProvider
 
     private void GenerateBiomes()
     {
-        _biomes.Add(new Biome("Biome 1", "Biome 1 Description", 0));
-        _biomes.Add(new Biome("Biome 2", "Biome 2 Description", 25));
-        _biomes.Add(new Biome("Biome 3", "Biome 3 Description", 150));
-        _biomes.Add(new Biome("Biome 4", "Biome 4 Description", 537));
-        _biomes.Add(new Biome("Biome 5", "Biome 5 Description", 1352));
+        _biomes.Add(new Biome("Seaside", "As you see and feel the sand underneath your feet, near you there's  the a pier, some children playing in the sand, and suprisingly a lot of garbage", 0));
+        _biomes.Add(new Biome("Ocean", "You are surrounded by a huge body of water as you sit in your stump.", 25));
+        _biomes.Add(new Biome("Rain Forest", "You stumble upon a lot of marvelous things: a cave, a walkway above you, and a lot of water around you.", 150));
+        _biomes.Add(new Biome("Savanna", "You find yourself in a desolate wasteland. You see a Shrubland in the distance while standing on a Grassy Field.  A massive tree rises up next to you.", 537));
+        _biomes.Add(new Biome("Desert", "You are standing on a sand dune in the barren and desolate desert, trying to survive a sandstorm. In the distance, you glimpse an oasis of hope.", 1352));
     }
 }
