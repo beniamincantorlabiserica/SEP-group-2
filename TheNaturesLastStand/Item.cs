@@ -36,6 +36,13 @@ public class Item
 		set { description = value; }
 	}
 
+    /// <summary>
+    /// Constructor of class Item Initializing the attirbutes
+    /// </summary>
+    /// <param name="Quest_ID">what quest the item is tied to</param>
+    /// <param name="Name">item name</param>
+    /// <param name="Description">item description</param>
+    /// <param name="Biome_ID">what biome the item is in</param>
 	public Item(string Name, string Description, int Quest_ID, int Biome_ID)
 	{
 		this.Quest_ID = Quest_ID;
