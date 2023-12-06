@@ -3,6 +3,15 @@ namespace TheNaturesLastStand;
 
 public class Location
 {
+
+   /// <summary>
+   /// Constructor of class Location Initializing the attirbutes
+   /// </summary>
+   /// <param name="Id">location id</param>
+   /// <param name="Name">location name</param>
+   /// <param name="Description">location description</param>
+   /// <param name="Biome">what biome the location is in</param>
+   /// <param name="Item">if the location has an item</param>
    public Location(int id, string name, string description, Biome? biome)
    {
       Id = id;
