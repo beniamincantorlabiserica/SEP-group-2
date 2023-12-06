@@ -18,7 +18,7 @@ namespace TheNaturesLastStand
             Player.Init();
             
             
-            string audioFilePath = @"../../../audio.mp3";
+            string audioFilePath = @"song.wav";
             
             try
             {
