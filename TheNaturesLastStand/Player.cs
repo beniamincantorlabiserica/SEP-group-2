@@ -470,7 +470,7 @@ public class Player
 
     private void HasWon()
     {
-        if(Balance >= 5)
+        if(Balance >= 200)
         {
             ScreenManager.DisplayWinScreen();
             HasCompletedGame = true;
