@@ -1,5 +1,6 @@
 ﻿using System.Diagnostics;
 using System.Runtime.InteropServices;
+using System.Timers;
 
 namespace TheNaturesLastStand
 {
@@ -24,13 +25,27 @@ namespace TheNaturesLastStand
         public void Run() {
 
             Player.Init();
+
+            System.Timers.Timer aTimer = new System.Timers.Timer();
+            aTimer.Elapsed += new ElapsedEventHandler(OnTimedEvent);
+            aTimer.Interval = 5000;
+            aTimer.Enabled = true;
             
-            
+            while(true)
+            {
+                string Command = Player.ScreenManager.ReadCommand();
+                Player.DoCommand(Command.ToLower());
+                if(Command.ToLower() == "quit" || Player.HasCompletedGame == true) break;
+            }
+        }
+
+        private static void OnTimedEvent(object source, ElapsedEventArgs e)
+        {
             string audioFilePath = @"../../../audio.mp3";
-            
+
             try
             {
-                if(!RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+                if (!RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
                 {
                     using (var process = new Process())
                     {
@@ -45,13 +60,6 @@ namespace TheNaturesLastStand
             catch (Exception ex)
             {
                 Console.WriteLine($"Error playing file: {ex.Message}");
-            }
-            
-            while(true)
-            {
-                string Command = Player.ScreenManager.ReadCommand();
-                Player.DoCommand(Command.ToLower());
-                if(Command.ToLower() == "quit" || Player.HasCompletedGame == true) break;
             }
         }
     }
