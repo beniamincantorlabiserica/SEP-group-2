@@ -8,6 +8,10 @@ public class ContentProvider
     private readonly List<Location> _locations = new();
     private readonly List<Biome> _biomes = new();
     private readonly bool debugMode = false;
+    
+    /// <summary>
+    /// Constructor for generating the content based on CSV files. 
+    /// </summary>
     public ContentProvider()
     {
         GenerateBiomes();
@@ -21,6 +25,9 @@ public class ContentProvider
         
     }
 
+    /// <summary>
+    /// Debugger used for overwatching the creating of locations/quests process
+    /// </summary>
     private void PrintDebugMessage()
     {
         Console.WriteLine("");
@@ -70,6 +77,9 @@ public class ContentProvider
         }
     }
 
+    /// <summary>
+    /// Responsible for linking the locations between them based on biomes and exits
+    /// </summary>
     private void LinkContent()
     {
         var rnd = new Random();
@@ -183,6 +193,12 @@ public class ContentProvider
         }
     }
     
+    /// <summary>
+    /// The function responsible for specific linking the locations 
+    /// </summary>
+    /// <param name="loc1">first location to be linked</param>
+    /// <param name="loc2">second location to be linked</param>
+    /// <param name="direction">direction where the locations have to be linked</param>
     private void LinkLocations(Location loc1, Location loc2, int direction)
     { 
         switch (direction)
@@ -206,16 +222,28 @@ public class ContentProvider
         }
     }
 
+    /// <summary>
+    /// Function used for getting the starting location for the player
+    /// </summary>
+    /// <returns></returns>
     public Location GetStartingLocation()
     {
         return _locations[0];
     }
 
+    /// <summary>
+    /// The function returns a pair of lists max used for progress in the Player class
+    /// </summary>
+    /// <returns>pair of lists max count of locations and quests</returns>
     public (int, int) GetMaxProgressState()
     {
         return (_locations.Count, _quests.Count);
     }
 
+    /// <summary>
+    /// The function gets the data from the CSV file and distributes the quest around the map
+    /// quests will have different location every time the game is run 
+    /// </summary>
     private void GenerateQuests()
     {
         using var reader = new StreamReader("./data/quests.csv");
@@ -264,7 +292,11 @@ public class ContentProvider
         }
         
     }
-
+    
+    /// <summary>
+    /// The function gets the data from the CSV file and distributes the locations around the map
+    /// locations will be in different places every time the game is run 
+    /// </summary>
     private void GenerateLocations()
     {
         using var reader = new StreamReader("./data/locations.csv");
@@ -298,6 +330,10 @@ public class ContentProvider
 
         GenerateItems();
     }
+    
+    /// <summary>
+    /// The function gets the data from the CSV file and distributes the items in the specific biomes
+    /// </summary>
     private void GenerateItems()
     {
         List<Location> ScrambledLocations = _locations.OrderBy(x => Random.Shared.Next()).ToList();
@@ -321,6 +357,9 @@ public class ContentProvider
         }
     }
 
+    /// <summary>
+    /// This function generates the biomes in the game, hardcoded
+    /// </summary>
     private void GenerateBiomes()
     {
         _biomes.Add(new Biome(1, "Seaside", "Serenity unfolds on a pristine island seaside paradise.", 0));
