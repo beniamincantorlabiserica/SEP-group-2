@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics;
+using System.Runtime.InteropServices;
 
 namespace TheNaturesLastStand
 {
@@ -18,17 +19,20 @@ namespace TheNaturesLastStand
             Player.Init();
             
             
-            string audioFilePath = @"../../../audio.mp3";
+            string audioFilePath = @"../../../song.wav";
             
             try
             {
-                using (var process = new Process())
+                if(!RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
                 {
+                    using (var process = new Process())
+                    {
                     process.StartInfo.FileName = "afplay";
                     process.StartInfo.Arguments = audioFilePath;
                     process.StartInfo.UseShellExecute = false;
                     process.StartInfo.CreateNoWindow = true;
                     process.Start();
+                   }
                 }
             }
             catch (Exception ex)
