@@ -25,11 +25,31 @@ namespace TheNaturesLastStand
         public void Run() {
 
             Player.Init();
+            string audioFilePath = @"../../../audio.mp3";
 
+            try
+            {
+                if (!RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+                {
+                    using (var process = new Process())
+                    {
+                        process.StartInfo.FileName = "afplay";
+                        process.StartInfo.Arguments = audioFilePath;
+                        process.StartInfo.UseShellExecute = false;
+                        process.StartInfo.CreateNoWindow = true;
+                        process.Start();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error playing file: {ex.Message}");
+            }
             System.Timers.Timer aTimer = new System.Timers.Timer();
             aTimer.Elapsed += new ElapsedEventHandler(OnTimedEvent);
-            aTimer.Interval = 5000;
+            aTimer.Interval = 91000;
             aTimer.Enabled = true;
+            
             
             while(true)
             {
