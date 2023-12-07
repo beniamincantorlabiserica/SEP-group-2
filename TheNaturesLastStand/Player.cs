@@ -45,7 +45,8 @@ public class Player
         BiomeCount = 5;
         Progress = 0;
         UpdateScreen( 
-            "Welcome to Natures' Last Stand console game.\nAs you might know, our planet is suffering because we don't take care of it as we should.\nBut no worries, you've came to our help and we are ready to save mother nature with your help.\nEverytime you move around the island you'll find new quests, once completing them you'll get a reward helping you advancing to new biomes!\n\nTry using \"help\" to get aquinted with the game's commands"
+            "Welcome to Nature's Last Stand console game. As you may already be aware, our planet is in distress due to our neglect. Fortunately, you've arrived to lend a helping hand, and together, we're determined to rescue Mother Nature.\n\nAs you navigate the island, be prepared to encounter diverse quests. Upon successful completion, you'll receive rewards that propel you into new and exciting biomes!\n\nFeel free to type \"help\" to familiarize yourself with the game's commands. Let's embark on this environmental adventure together!"
+
         );
     }
 
@@ -70,7 +71,7 @@ public class Player
                     }
                     else
                     {
-                        UpdateScreen("Uhh, seems like you need more money to pass to a new biome. Try completing more quests.");
+                        UpdateScreen("It appears that you could use additional funds to unlock access to a new biome. Consider undertaking more quests to bolster your resources and progress further in the game.");
                     }
                 }
                 else
@@ -83,7 +84,7 @@ public class Player
             }
             else
             {
-                UpdateScreen("Sorry...no location in this direction.");
+                UpdateScreen("Apologies, but there's no destination in this direction.");
             }
         }
         else if (Command == "move left")
@@ -101,7 +102,7 @@ public class Player
                     }
                     else
                     {
-                        UpdateScreen("Uhh, seems like you need more money to pass to a new biome. Try completing more quests.");
+                        UpdateScreen("It appears that you could use additional funds to unlock access to a new biome. Consider undertaking more quests to bolster your resources and progress further in the game.");
                     }
                 }
                 else
@@ -131,7 +132,7 @@ public class Player
                     }
                     else
                     {
-                        UpdateScreen("Uhh, seems like you need more money to pass to a new biome. Try completing more quests.");
+                        UpdateScreen("It appears that you could use additional funds to unlock access to a new biome. Consider undertaking more quests to bolster your resources and progress further in the game.");
                     }
                 }
                 else
@@ -161,7 +162,7 @@ public class Player
                     }
                     else
                     {
-                        UpdateScreen("Uhh, seems like you need more money to pass to a new biome. Try completing more quests.");
+                        UpdateScreen("It appears that you could use additional funds to unlock access to a new biome. Consider undertaking more quests to bolster your resources and progress further in the game.");
                     }
                 }
                 else
