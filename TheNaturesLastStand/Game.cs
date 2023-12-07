@@ -44,7 +44,7 @@ namespace TheNaturesLastStand
             {
                 string Command = Player.ScreenManager.ReadCommand();
                 Player.DoCommand(Command.ToLower());
-                if(Command.ToLower() == "quit") break;
+                if(Command.ToLower() == "quit" || Player.HasCompletedGame == true) break;
             }
         }
     }

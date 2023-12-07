@@ -3,6 +3,7 @@ namespace TheNaturesLastStand;
 public class Player
 {
     public int Balance { get; set; }
+    public bool HasCompletedGame { get; set; }
     public Location CurrentLocation { get; set; }
     public List<Quest> ActiveQuests { get; set; }
     public List<Biome> BiomeList { get; set; }
@@ -34,6 +35,7 @@ public class Player
     /// </summary>
     public void Init()
     {
+        HasCompletedGame = false;
         ContentProvider = new ContentProvider();
         ActiveQuests = new List<Quest>();
         Inventory = new List<Item>();
@@ -413,6 +415,8 @@ public class Player
         {
             InvalidCommand();
         }
+
+        HasWon();
     }
 
     /// <summary>
@@ -462,6 +466,15 @@ public class Player
         double scorePerTask = 100 / (BiomeCount + LocationCount + QuestCount);
         int totalTasksCompleted = SeenBiome.Count + SeenLocations.Count + SeenQuests.Count;
         Progress = scorePerTask * totalTasksCompleted;
+    }
+
+    private void HasWon()
+    {
+        if(Balance >= 5)
+        {
+            ScreenManager.DisplayWinScreen();
+            HasCompletedGame = true;
+        }
     }
     
 }

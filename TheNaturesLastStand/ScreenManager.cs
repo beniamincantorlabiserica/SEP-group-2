@@ -1,3 +1,5 @@
+using System;
+
 namespace TheNaturesLastStand;
 
 public class ScreenManager
@@ -66,6 +68,22 @@ public class ScreenManager
     public string ReadCommand()
     {
         return Console.ReadLine() ?? "";
+    }
+
+    public void DisplayWinScreen()
+    {
+        Console.Clear();
+        var WinString = $"""
+                              _________                                     __        .__          __  .__                       ._.
+                              \_   ___ \  ____   ____    ________________ _/  |_ __ __|  | _____ _/  |_|__| ____   ____   ______ | |
+                              /    \  \/ /  _ \ /    \  / ___\_  __ \__  \\   __\  |  \  | \__  \\   __\  |/  _ \ /    \ /  ___/ | |
+                              \     \___(  <_> )   |  \/ /_/  >  | \// __ \|  | |  |  /  |__/ __ \|  | |  (  <_> )   |  \\___ \   \|
+                               \______  /\____/|___|  /\___  /|__|  (____  /__| |____/|____(____  /__| |__|\____/|___|  /____  >  __
+                                      \/            \//_____/            \/                     \/                    \/     \/   \/
+                                                                    Thanks for playing!
+                              """;
+        Console.Clear();
+        Console.Write(WinString);
     }
 
     public void DisplayGameOver(double progress)
