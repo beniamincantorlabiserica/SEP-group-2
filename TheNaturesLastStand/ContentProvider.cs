@@ -300,6 +300,7 @@ public class ContentProvider
     }
     private void GenerateItems()
     {
+        List<Location> ScrambledLocations = _locations.OrderBy(x => Random.Shared.Next()).ToList();
         Random rnd = new Random();
         using (StreamReader reader = new StreamReader("./data/Items.csv"))
         {
@@ -307,37 +308,25 @@ public class ContentProvider
             {
                 string line = reader.ReadLine();
                 string[] arguments = line.Split('|');
-                int index = 0;
 
-                bool Has_Space_For_Item = false;
-
-                foreach (Location location in _locations)
+                foreach (Location location in ScrambledLocations)
                 {
-                    if (location.Item == null)
+                    if(location.Item == null && location.Biome.ID == int.Parse(arguments[3]))
                     {
-                        Has_Space_For_Item = true;
+                        location.Item = new Item(arguments[0], arguments[1], int.Parse(arguments[2]), int.Parse(arguments[3]));
+                        break;
                     }
-                }
-
-                if(Has_Space_For_Item)
-                {
-                    do
-                    {
-                        index = rnd.Next(0, _locations.Count);
-                    } while (_locations[index].Item != null);
-                }
-
-                _locations[index].Item = new Item(arguments[0], arguments[1], int.Parse(arguments[2]), int.Parse(arguments[3]));
+                }   
             }
         }
     }
 
     private void GenerateBiomes()
     {
-        _biomes.Add(new Biome("Biome 1", "Biome 1 Description", 0));
-        _biomes.Add(new Biome("Biome 2", "Biome 2 Description", 25));
-        _biomes.Add(new Biome("Biome 3", "Biome 3 Description", 150));
-        _biomes.Add(new Biome("Biome 4", "Biome 4 Description", 537));
-        _biomes.Add(new Biome("Biome 5", "Biome 5 Description", 1352));
+        _biomes.Add(new Biome(1, "Biome 1", "Biome 1 Description", 0));
+        _biomes.Add(new Biome(2, "Biome 2", "Biome 2 Description", 25));
+        _biomes.Add(new Biome(3, "Biome 3", "Biome 3 Description", 150));
+        _biomes.Add(new Biome(4, "Biome 4", "Biome 4 Description", 537));
+        _biomes.Add(new Biome(5, "Biome 5", "Biome 5 Description", 1352));
     }
 }

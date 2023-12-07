@@ -373,7 +373,7 @@ public class Player
             }
             else
             {
-                UpdateScreen("There are not items here.");
+                UpdateScreen("There are no items here.");
             }
         }
         else if(Command == "inventory")
