@@ -7,6 +7,10 @@ namespace TheNaturesLastStand
     {
         private Player Player;
         private ScreenManager ScreenManager;
+        
+        /// <summary>
+        /// Constructor for running the game, creating a new ScreenManager and a new Player
+        /// </summary>
         public Game()
         {
             ScreenManager = new ScreenManager();
@@ -14,6 +18,9 @@ namespace TheNaturesLastStand
             Run();
         }
 
+        /// <summary>
+        /// Function running the game and play the music
+        /// </summary>
         public void Run() {
 
             Player.Init();
