@@ -362,10 +362,10 @@ public class ContentProvider
     /// </summary>
     private void GenerateBiomes()
     {
-        _biomes.Add(new Biome(1, "Biome 1", "Biome 1 Description", 0));
-        _biomes.Add(new Biome(2, "Biome 2", "Biome 2 Description", 25));
-        _biomes.Add(new Biome(3, "Biome 3", "Biome 3 Description", 150));
-        _biomes.Add(new Biome(4, "Biome 4", "Biome 4 Description", 537));
-        _biomes.Add(new Biome(5, "Biome 5", "Biome 5 Description", 1352));
+        _biomes.Add(new Biome(1, "Seaside", "Serenity unfolds on a pristine island seaside paradise.", 0));
+        _biomes.Add(new Biome(2, "Ocean", "Azure expanse, rhythmic waves, endless horizon's tranquil beauty.", 25));
+        _biomes.Add(new Biome(3, "Rain Forest", "Lush green canopy, vibrant life, nature's symphony thrives.", 55));
+        _biomes.Add(new Biome(4, "Savana", "Golden grasslands, majestic wildlife, endless horizons, untamed beauty.", 80));
+        _biomes.Add(new Biome(5, "Desert", "Sculpted dunes, golden silence, desert blooms in solitude.", 150));
     }
 }
