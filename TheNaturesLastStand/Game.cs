@@ -26,12 +26,13 @@ namespace TheNaturesLastStand
 
             Player.Init();
             string audioFilePath = @"../../../audio.mp3";
+            Process process = new Process();
 
             try
             {
                 if (!RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
                 {
-                    using (var process = new Process())
+                    using (process = new Process())
                     {
                         process.StartInfo.FileName = "afplay";
                         process.StartInfo.Arguments = audioFilePath;
@@ -55,7 +56,11 @@ namespace TheNaturesLastStand
             {
                 string Command = Player.ScreenManager.ReadCommand();
                 Player.DoCommand(Command.ToLower());
-                if(Command.ToLower() == "quit" || Player.HasCompletedGame == true) break;
+                if (Command.ToLower() == "quit" || Player.HasCompletedGame == true)
+                {
+                    process.Kill();
+                    break;
+                }
             }
         }
 
