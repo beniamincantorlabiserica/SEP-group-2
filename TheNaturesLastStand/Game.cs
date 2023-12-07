@@ -19,7 +19,7 @@ namespace TheNaturesLastStand
             Player.Init();
             
             
-            string audioFilePath = @"../../../song.wav";
+            string audioFilePath = @"../../../audio.mp3";
             
             try
             {
@@ -27,12 +27,12 @@ namespace TheNaturesLastStand
                 {
                     using (var process = new Process())
                     {
-                    process.StartInfo.FileName = "afplay";
-                    process.StartInfo.Arguments = audioFilePath;
-                    process.StartInfo.UseShellExecute = false;
-                    process.StartInfo.CreateNoWindow = true;
-                    process.Start();
-                   }
+                        process.StartInfo.FileName = "afplay";
+                        process.StartInfo.Arguments = audioFilePath;
+                        process.StartInfo.UseShellExecute = false;
+                        process.StartInfo.CreateNoWindow = true;
+                        process.Start();
+                    }
                 }
             }
             catch (Exception ex)
