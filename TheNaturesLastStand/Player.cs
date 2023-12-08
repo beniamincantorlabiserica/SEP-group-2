@@ -38,6 +38,7 @@ public class Player
     public void Init()
     {
         HasCompletedGame = false;
+        Balance = 50;
         ContentProvider = new ContentProvider();
         ActiveQuests = new List<Quest>();
         Inventory = new List<Item>();

@@ -131,6 +131,7 @@ public class ContentProvider
                 int exit1, exit2;
                 var exitsChoice = rnd.Next(1, 4);
                 var nextLocationChoice = rnd.Next(1, 3);
+
                 switch (exitsChoice)
                 {
                     case 1:
@@ -174,7 +175,7 @@ public class ContentProvider
                 }
                 else
                 {
-                    exit = Math.Abs(enteredAt + 3) % 4 + 1;
+                    exit = Math.Abs(enteredAt - 2) % 4 + 1;
                 }
                 LinkLocations(location, _locations[locationIndex+1], exit);
             }
