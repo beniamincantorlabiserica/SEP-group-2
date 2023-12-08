@@ -1,10 +1,40 @@
-# 7+10+13+16+19 = 65 total locations needed
-Location 1|Location 1 Description|1
-Location 2|Location 2 Description|1
-Location 3|Location 3 Description|1
-Location 4|Location 4 Description|2
-Location 5|Location 5 Description|2
-Location 6|Location 6 Description|2
-Location 7|Location 7 Description|2
-Location 8|Location 8 Description|2
-Location 9|Location 9 Description|2
+Beach|You are at the beach. You gaze over the ocean's mesmerizing horizon.|1
+Fisherman's Pier|You see the fisherman tying a knot, he seems quite friendly. You find a boat in the water.|1
+Dirty Part of the Beach|You are surprised to see a lot of garbage on this part of the beach.|1
+Children's Sand Playground|You see some children making a sand castle and making ice cream. You are shocked as you see one child throwing garbage on the ground.|1
+Starfished Part of the Beach|You see starfishes on the ground. These precious animals should be in the water.|1
+The Lighthouse|A lighthouse shows up right in front of you. As it is on the ground, it's height should be long. That's because the height of a lighthouse takes into account the curvature of the earth, so the higher the light above the water levels, the further away it can be seen at sea. But the light should not be so high up that local sailors will not see it.|1
+Tropical Island|Palm trees sway in the gentle breeze on a small tropical island. White sand beaches surround crystal clear waters, and colorful fish swim near the coral reefs|2
+The Denmark Strait Cataract|Before you, hidden beneath the surface lies the stunning Denmark Strait Cataract, an underwater waterfall where Arctic waters are submerged beneath warmer Atlantic currents, providing a remarkable natural spectacle and shaping the dynamics of the ocean circulation.|2
+Coral Reef|Diving beneath the surface, you discover a vibrant coral reef teeming with colorful fish, sea turtles, and other marine life|2
+Open Ocean Horizon|As far as the eye can see, the open ocean horizon stretches, offering an expansive view of endless deep blue waters. The air is salty, and occasional seabirds fly overhead.|2
+Shipwreck Site|You explore the remains of a sunken ship on the ocean floor. The broken pieces of the ship attract underwater life, creating a unique and eerie scene beneath the surface.|2
+Submerged Cave|Exploring the depths of the ocean, you'll discover a mysterious submerged cave with dark openings. Inside, living creatures illuminate the place, creating an otherworldly atmosphere. Strange and beautiful creatures may lurk in the shadows.|2
+Kelp Forest|Exploring the depths of the kelp forest, you find yourself surrounded by towering kelp plants swaying in the underwater currents. Sunlight streams through the water, creating a stunning play of light, and vibrant marine life adds to the magic.|2
+Cave|You find yourself at the entrance of a mysterious cave. The air is cool and damp, and the only sound you hear is the echoing drip of water from the ceiling.|3
+River|The river flows gently, its clear water reflecting the surrounding greenery. You notice a wooden bridge crossing the river up ahead.|3
+Canopy Walkway|Elevated high above the forest floor, you find yourself on a canopy walkway. Wooden bridges and platforms are suspended between massive trees, allowing you to cross the rainforest at treetop level. The air is filled with the sounds of chirping birds and the rustling of leaves. As you walk along the walkway, you catch glimpses of colorful butterflies and maybe even spot a monkey swinging through the branches. The view from this point is breathtaking, offering a unique perspective of the rainforest.|3
+Lake|A peaceful lake stretches out before you. The water is calm, and you can see lily pads floating on the surface. In the distance, you spot a canoe tied to a tree, inviting you to explore the lake.|3
+Swamp|The swamp is a mysterious and somewhat eerie place, the ground is soft and muddy. The croaking of frogs and the occasional splash of water hint at the diverse wildlife that inhabits this unique ecosystem.|3
+Waterfall|The sound of cascading water grows louder as you approach a magnificent waterfall. The water crashes into a pool below, creating a mist that adds to the freshness of the air. You see rainbows in the spray. |3
+Creek bed|You are at a narrow creek bed with trickling water over smooth stones, surrounded by wildflowers and animal tracks.|3
+Stream|The babbling stream flows fast with crystal clear water. Walking along the banks, you can see butterflies fluttering and you can hear the distant calls of exotic birds.|3
+Shrubland|A expansive shrubland surrounds you, the small shrubby trees provide barely any cover from the wind.|4
+Grassy field|A mostly open field full of mixed-length grass surrounds you, most of it dry.|4
+A massive tree|You come upon the largest tree you have ever seen, remembering it to be the historic "Candler Oak" the oldest tree (350-450 years) in the area. |4
+Desert Transition|After walking for a while you begin to see the savannah transition into a full blown desert in the distance, deciding against heading out into the dry sand.|4
+Woodland|A large wooded area of the savannah. The trees instead of being tall are short and wide, providing shade to animals.|4
+A large river|A wide river splits the land, in the distance you see numerous animals grazing near it.|4
+Unnatural woods|You come upon what once was a grassland, instead now covered in a lot of tree seedlings in various stages of growth.|4
+Everglade|You enter an expansive glade, large patches of water litter the area.|4
+Serengeti|You enter a picturesque area, mimicking the typical african savanna, giraffes eat leaves from the treetops nearby.|4
+Dust storm|Suddenly a dust storm envelops you, barely able to stay standing as the sand hits you.|5
+Polar desert|Oddly the temperature suddenly drops, and you find yourself on an expansive frozen desert.|5
+Sand dune|You come upon an exceptionally large sand dune, "Duna Federico Kirbus" the largest sand dune in the world, estimating it to be 4035 ft. tall.  |5
+Oasis|A comfortable patch of land in the ardous desert, it's small pond of water giving you reprieve from the harsh heat.|5
+Nomadic Campsite|You stumbled upon a nomadic campsite in the desert, marked by simple tents and a small fire pit. The nomads who once lived here have left only traces of their existence.|5
+Cactus Grove|You arrive at a site where towering sand dunes stretch as far as the eye can see. The golden grains shift with the wind, creating a mesmerizing landscape of rolling dunes beneath the blazing desert sun. |5
+Cactus field|An odd concentration of large cacti, having survived due to the lucky formation of sand dunes and because they require barely any rain fall.|5
+Gypsum dune|After wandering around for a while you find an odd, small sand dune that looks almost like snow. Determining to be gypsum crystals eroded over decades of exposure to the elements. |5
+Rock formation|You come upon what once must have been a large red rock formation, now almost eroded by the extreme desert dust winds.|5
+Flash flood|The slow buildup of dark clouds above you overflows as rain begins pouring down, soaking the sand dunes and creating a muddy flash flood. |5
