@@ -125,59 +125,30 @@ public class ContentProvider
             {
                 enteredAt = 1;
             }
-            
-            if (numberOfExits == 2)
+
+            int exit1, exit2;
+
+            do
             {
-                int exit1, exit2;
-                var exitsChoice = rnd.Next(1, 4);
-                var nextLocationChoice = rnd.Next(1, 3);
+                exit1 = rnd.Next(1, 5);
+            } while (exit1 == enteredAt);
 
-                switch (exitsChoice)
-                {
-                    case 1:
-                        exit1 = Math.Abs(enteredAt + 2) % 4 + 1;
-                        exit2 = Math.Abs(enteredAt + 1) % 4 + 1;
-                        break;
-                    case 2:
-                        exit1 = Math.Abs(enteredAt - 2) % 4 + 1;
-                        exit2 = Math.Abs(enteredAt + 2) % 4 + 1;
-                        break;
-                    default:
-                        exit1 = Math.Abs(enteredAt + 1) % 4 + 1;
-                        exit2 = Math.Abs(enteredAt - 2) % 4 + 1;
-                        break;
-                }
-                if (nextLocationChoice == 2)
-                {
-                    LinkLocations(location, _locations[locationIndex+2], exit1);
-                    LinkLocations(location, _locations[locationIndex+1], exit2);
-                    locationIndex++;
-                }
-                else
-                {
-                    LinkLocations(location, _locations[locationIndex+2], exit1);
-                    LinkLocations(location, _locations[locationIndex+1], exit2);
-                    locationIndex++;
 
-                }
+            if (numberOfExits == 2 && (_locations[locationIndex + 2].Biome.ID == _locations[locationIndex+1].Biome.ID) &&
+                (_locations[locationIndex].Biome.ID == _locations[locationIndex+1].Biome.ID))
+            {
+                do
+                {
+                    exit2 = rnd.Next(1, 5);
+                } while (exit2 == exit1 || exit2 == enteredAt);
+
+                LinkLocations(location, _locations[locationIndex + 2], exit1);
+                LinkLocations(location, _locations[locationIndex + 1], exit2);
+                locationIndex++;
             }
             else
             {
-                var exitsChoice = rnd.Next(1, 3);
-                int exit;
-                if (exitsChoice == 1)
-                {
-                    exit = Math.Abs(enteredAt + 1) % 4 + 1;
-                }
-                else if (exitsChoice == 2)
-                {
-                    exit = Math.Abs(enteredAt + 2) % 4 + 1;
-                }
-                else
-                {
-                    exit = Math.Abs(enteredAt - 2) % 4 + 1;
-                }
-                LinkLocations(location, _locations[locationIndex+1], exit);
+                LinkLocations(location, _locations[locationIndex + 1], exit1);
             }
         }
 
