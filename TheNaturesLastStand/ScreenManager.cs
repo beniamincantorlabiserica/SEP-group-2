@@ -58,6 +58,7 @@ public class ScreenManager
 
     public void UpdateScreen(int balance, List<string> quests, string biome, Location location, string message, double progress)
     {
+        Console.Clear();
         DisplayStatusBox(balance, quests);
         DisplayConversationBox(biome, location.Name, message, progress);
         DisplayMapBox( location.LeftLocation, location.RightLocation, location.UpLocation, location.DownLocation);
@@ -277,14 +278,14 @@ public class ScreenManager
             }
             else if (i == 7 && up != null)
             {
-                Console.Write("│" + CenterTextInString($"\u2191", _mapBoxWidth - 2) + "│");
+                Console.Write("│" + CenterTextInString($"↕", _mapBoxWidth - 2) + "│");
             }
             else if (i == 8)
             {
                 var mapString = "";
                 if (left != null)
                 {
-                    mapString += "[ ] \u2190  ";
+                    mapString += "[ ] ↔  ";
                 }
                 else
                 {
@@ -294,7 +295,7 @@ public class ScreenManager
                 mapString += "[X]";
                 if (right != null)
                 {
-                    mapString += "  \u2192 [ ]";
+                    mapString += "  ↔ [ ]";
                 }
                 else
                 {
@@ -304,7 +305,7 @@ public class ScreenManager
             }
             else if (i == 9 && down != null)
             {
-                Console.Write("│" + CenterTextInString($"\u2193", _mapBoxWidth - 2) + "│");
+                Console.Write("│" + CenterTextInString($"↕", _mapBoxWidth - 2) + "│");
             }
             else if (i == 10 && down != null)
             {
