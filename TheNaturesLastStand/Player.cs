@@ -1,3 +1,5 @@
+using System.Runtime.InteropServices;
+
 namespace TheNaturesLastStand;
 
 public class Player
@@ -229,7 +231,7 @@ public class Player
 
             UpdateScreen("Sorry to heat that...guess somebody else has to save the world...");
         }
-        else if (Command == CurrentLocation.Quest.PositiveCommand.ToLower())
+        else if (Command == CurrentLocation.Quest.PositiveCommand.Trim().ToLower())
         {
             if(CurrentLocation.Quest.Type != QuestType.ItemQuest)
             {
@@ -296,6 +298,16 @@ public class Player
                     case QuestState.NotSeen:
                         CurrentLocation.Quest.State = QuestState.Seen;
                         UpdateScreen($"Someone is here, try talking by using \"talk\" command.");
+                        break;
+
+                    case QuestState.Seen:
+                        UpdateScreen($"Someone is here, try talking by using \"talk\" command.");
+                        break;
+
+                    case QuestState.Active:
+                        UpdateScreen(CurrentLocation.Quest.Description + "\n\n >" +
+                                     CurrentLocation.Quest.PositiveCommand + "\n >" +
+                                     CurrentLocation.Quest.NegativeCommand);
                         break;
                     default:
                         UpdateScreen($"Someone is here, try talking by using \"talk\" command.");

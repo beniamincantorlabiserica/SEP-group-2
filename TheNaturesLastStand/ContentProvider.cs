@@ -345,11 +345,18 @@ public class ContentProvider
                 string line = reader.ReadLine();
                 string[] arguments = line.Split('|');
 
-                foreach (Location location in ScrambledLocations)
+                for (int i = 0; i < ScrambledLocations.Count; i++)
                 {
-                    if(location.Item == null && location.Biome.ID == int.Parse(arguments[3]))
+                    if (ScrambledLocations[i].Item == null && ScrambledLocations[i].Biome.ID == int.Parse(arguments[3]))
                     {
-                        location.Item = new Item(arguments[0], arguments[1], int.Parse(arguments[2]), int.Parse(arguments[3]));
+                        foreach (Location location in _locations)
+                        {
+                            if(location.Id == ScrambledLocations[i].Id)
+                            {
+                                location.Item = new Item(arguments[0], arguments[1], int.Parse(arguments[2]), int.Parse(arguments[3]));
+                                break;
+                            }
+                        }
                         break;
                     }
                 }   
